@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sophia Lattermann – Game Art Portfolio</title>
+<meta name="description" content="Game Art Portfolio von Sophia Lattermann: Icons, 3D-Environments und Hard-Surface-Modelle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1726; --surface:#152238; --surface-2:#1B2B45; --line:#26364F;
+  --text:#EDF2F6; --muted:#93A4B6; --accent:#5CC2B8; --accent-ink:#0B2E2B;
+  --radius:20px; --gutter:clamp(16px,5vw,80px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--text);font:400 16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--gutter)}
+
+/* Navigation */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(14,23,38,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
+.brand{font-weight:600;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.topbar nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.topbar nav a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:999px;white-space:nowrap;transition:.2s}
+.topbar nav a:hover,.topbar nav a.active{color:var(--text);background:var(--surface-2)}
+
+/* Hero */
+.hero{padding:clamp(72px,12vw,140px) 0 clamp(48px,7vw,80px)}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(44px,7.5vw,96px);font-weight:700;letter-spacing:-.035em;line-height:1;margin:18px 0 22px}
+.hero p{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:620px}
+
+/* Übersicht / Inhaltsverzeichnis */
+.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding-bottom:clamp(80px,10vw,140px)}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)Den Fisch bitte als Vorschau. In den Cards;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.card .thumb{aspect-ratio:4/3;background:var(--surface-2);overflow:hidden}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card .thumb.contain img{object-fit:contain;padding:3%}
+.card:hover .thumb img{transform:scale(1.04)}
+.card .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:4px}
+.card .num{font-size:13px;color:var(--accent);font-weight:600}
+.card h3{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.card .tags{font-size:14px;color:var(--muted)}
+
+/* Projekt */
+.project{padding:clamp(72px,9vw,120px) 0;border-top:1px solid var(--line)}
+.p-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.p-head h2{font-size:clamp(36px,5.5vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.02;margin:14px 0 20px}
+.p-head .lead{font-size:18px;color:var(--muted);max-width:560px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.facts div{background:var(--surface);padding:16px 18px}
+.facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.facts dd{font-weight:500}
+.cover{border-radius:var(--radius);overflow:hidden;background:var(--surface);margin-bottom:clamp(56px,7vw,96px)}
+.cover img{width:100%;cursor:zoom-in}
+
+.step{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(24px,4vw,64px);margin-top:clamp(56px,7vw,88px)}
+.step-info{position:sticky;top:96px;align-self:start}
+.step-info .n{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.08em}
+.step-info h3{font-size:24px;font-weight:600;letter-spacing:-.015em;margin:6px 0 10px}
+.step-info p{font-size:15px;color:var(--muted)}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr))}
+.grid.c2{--cols:2}.grid.c4{--cols:4}
+figure{margin:0}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:zoom-in}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.tile:hover img{transform:scale(1.03)}
+.tile.sq{aspect-ratio:1}.tile.wide{aspect-ratio:16/10}
+.tile.paper{background:#F6EEDC;border-color:#F6EEDC}
+.tile.paper img{object-fit:contain;padding:10%;mix-blend-mode:multiply}
+.icon-bg{background:radial-gradient(circle at 50% 40%,#22617A,#173F52)}
+.tile.icon img{object-fit:contain;padding:8%}
+figcaption{font-size:14px;color:var(--muted);padding-top:10px}
+.span2{grid-column:span 2}
+
+/* Clay/Render-Vergleich */
+.compare{position:relative;aspect-ratio:var(--ar,16/10);border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--line);user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.compare .top{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+.compare .bar::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:#fff;color:var(--bg);display:grid;place-items:center;font-size:16px;font-weight:700;box-shadow:0 2px 12px rgba(0,0,0,.35)}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.compare .lbl{position:absolute;top:12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(14,23,38,.7);padding:5px 10px;border-radius:999px;pointer-events:none}
+.compare .lbl.l{left:12px}.compare .lbl.r{right:12px}
+
+.swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.swatches span{width:36px;height:36px;border-radius:50%;border:1px solid var(--line)}
+.pixel{image-rendering:pixelated;image-rendering:crisp-edges}
+.pix-bg{background-color:#1B2B45;background-image:linear-gradient(45deg,#18263D 25%,transparent 25%,transparent 75%,#18263D 75%),linear-gradient(45deg,#18263D 25%,transparent 25%,transparent 75%,#18263D 75%);background-size:32px 32px;background-position:0 0,16px 16px}
+.tile.pix img{object-fit:contain;padding:18%}
+.scales{display:flex;align-items:flex-end;gap:clamp(16px,3vw,40px);flex-wrap:wrap;padding:32px;border-radius:16px;border:1px solid var(--line)}
+.scales figure{display:flex;flex-direction:column;align-items:center}
+.slot{aspect-ratio:1;border:2px dashed var(--line);border-radius:16px;display:grid;place-items:center;color:var(--muted);font-size:14px}
+.pal64{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:4px;max-width:720px}
+.pal64 span{aspect-ratio:1;border-radius:4px;position:relative}
+.pal64 span.on{outline:2px solid var(--text);outline-offset:2px;z-index:1}
+.pal-note{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);margin-top:16px}
+.on-dot{width:14px;height:14px;border-radius:3px;outline:2px solid var(--text);outline-offset:2px}
+@media (max-width:560px){.pal64{grid-template-columns:repeat(8,minmax(0,1fr))}}
+.carousel{position:relative}
+.carousel .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:1600/993}
+.carousel .track::-webkit-scrollbar{display:none}
+.carousel .track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start}
+.carousel .cv{position:absolute;top:50%;margin-top:-24px;width:48px;height:48px;border-radius:50%;border:0;background:rgba(14,23,38,.75);color:var(--text);font-size:24px;cursor:pointer}
+.carousel .cv:hover{background:var(--accent);color:var(--accent-ink)}
+.carousel .prev{left:16px}.carousel .next{right:16px}
+.carousel .dots{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:8px}
+.carousel .dots button{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.4);cursor:pointer}
+.carousel .dots button.on{background:#fff;width:28px;border-radius:5px}
+.sprite{aspect-ratio:1;background:url(assets/pixelart/fish_sheet.png) 0 0/400% 100% no-repeat;image-rendering:pixelated;animation:swim .5s steps(1,end) infinite}
+@keyframes swim{0%{background-position:0 0}25%{background-position:33.333% 0}50%{background-position:66.667% 0}75%{background-position:100% 0}}
+.card .thumb .sprite{width:78%;margin:auto}
+.card .thumb:has(.sprite){display:flex;align-items:center}
+.anim-stage{display:grid;place-items:center;border-radius:16px;border:1px solid var(--line);padding:clamp(16px,4vw,40px)}
+.anim-stage .sprite{width:min(100%,512px)}
+.frames{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.frames figure{display:flex;flex-direction:column;align-items:center}
+.frames img{width:100%;border-radius:12px;border:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){.sprite{animation:none}}
+.card-ext{border-style:dashed;background:transparent}
+.card-ext .thumb{display:grid;place-items:center;background:linear-gradient(135deg,var(--surface-2),var(--surface))}
+.ext-arrow{font-size:clamp(56px,7vw,88px);color:var(--accent);line-height:1;transition:transform .3s}
+.card-ext:hover .ext-arrow{transform:translate(6px,-6px)}
+.cover-set{grid-template-columns:repeat(8,1fr);gap:2.5%;padding:5% 5%}
+@media (max-width:560px){.cover-set{grid-template-columns:repeat(4,1fr);row-gap:8%}}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--accent);color:var(--accent-ink);margin-left:6px;vertical-align:1px}
+
+footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none}footer a:hover{color:var(--text)}
+
+/* Lightbox */
+#lb{position:fixed;inset:0;z-index:50;background:rgba(6,11,20,.95);display:none;align-items:center;justify-content:center;padding:56px 72px}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:100%;border-radius:8px}
+#lb button{position:absolute;background:var(--surface-2);color:var(--text);border:0;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer}
+#lb button:hover{background:var(--accent);color:var(--accent-ink)}
+#lb .x{top:16px;right:16px}#lb .prev{left:16px;top:50%;margin-top:-24px}#lb .next{right:16px;top:50%;margin-top:-24px}
+#lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:var(--muted);font-size:14px}
+
+@media (max-width:960px){
+  .p-head,.step{grid-template-columns:1fr}
+  .step-info{position:static}
+  .grid,.grid.c4{--cols:2}
+}
+@media (max-width:560px){
+  .grid.c2:not(.keep){--cols:1}
+  .span2{grid-column:auto}
+  .topbar .brand{display:none}
+  #lb{padding:56px 8px}
+  #lb .prev,#lb .next{top:auto;bottom:8px;margin:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Sophia Lattermann</a>
+    <nav aria-label="Projekte">
+      <a href="#iconset">Illustrated Icons</a>
+      <a href="#pixelart">Pixel Art</a>
+      <a href="#nintendo-switch">3D</a>
+                </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap">
+
+  <section class="hero">
+    <p class="kicker">Game Art Portfolio</p>
+    <h1>Sophia Lattermann</h1>
+    <p>Illustrierte Icons, Pixel Art und 3D-Arbeiten – jeweils mit dem Prozess von Skizze und Referenz bis zum finalen Render.</p>
+  </section>
+
+  <!-- Inhaltsverzeichnis -->
+  <nav class="overview" aria-label="Inhaltsverzeichnis">
+    <a class="card" href="#iconset">
+      <div class="thumb contain icon-bg"><img src="assets/iconset/card_perle.png" alt="" style="padding:9%"></div>
+      <div class="body"><span class="num">01</span><h3>Maritimes Iconset</h3><span class="tags">Illustrated Icons · Procreate</span></div>
+    </a>
+    <a class="card" href="#pixelart">
+      <div class="thumb contain pix-bg"><div class="sprite" role="img" aria-label="Animierter Pixel-Art-Fisch"></div></div>
+      <div class="body"><span class="num">02</span><h3>Pixel-Art-Set</h3><span class="tags">Pixel Art · Sprites · LibreSprite</span></div>
+    </a>
+    <a class="card" href="#nintendo-switch">
+      <div class="thumb"><img src="assets/nintendo-switch/Nintendo_Switch_final_render.jpg" alt=""></div>
+      <div class="body"><span class="num">03</span><h3>Nintendo Switch</h3><span class="tags">3D · Hard Surface Modeling · 3ds Max</span></div>
+    </a>
+    <a class="card" href="#ramen-world">
+      <div class="thumb"><img src="assets/ramen-world/render_ramenshop_close.jpg" alt=""></div>
+      <div class="body"><span class="num">04</span><h3>Ramen World</h3><span class="tags">3D · Environment · Blender</span></div>
+    </a>
+    <a class="card" href="#wasserfall">
+      <div class="thumb"><img src="assets/ramen-world/waterfall_render_front.jpg" alt=""></div>
+      <div class="body"><span class="num">05</span><h3>Wasserfall</h3><span class="tags">3D · Grease Pencil · Blender</span></div>
+    </a>
+    <a class="card" href="#einzelarbeiten">
+      <div class="thumb"><img src="assets/3d-einzeln/untitled.jpg" alt=""></div>
+      <div class="body"><span class="num">06</span><h3>3D-Einzelarbeiten</h3><span class="tags">3D · Props &amp; Diorama · Blender</span></div>
+    </a>
+    <!-- TODO: Link zum UX-/Grafik-/Motion-Portfolio eintragen -->
+    <a class="card card-ext" href="#" target="_blank" rel="noopener">
+      <div class="thumb"><span class="ext-arrow" aria-hidden="true">↗</span></div>
+      <div class="body"><span class="num">Weiteres Portfolio</span><h3>UX, Grafik &amp; Motion Design</h3><span class="tags">Externe Seite</span></div>
+    </a>
+  </nav>
+
+</div>
+
+<!-- ============ 01 ILLUSTRATED ICONS ============ -->
+<article class="project" id="iconset">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">01 · Illustrated Icons</p>
+      <h2>Maritimes Iconset</h2>
+      <p class="lead">Neun Item-Icons für ein Unterwasser-Game. Ziel war eine einheitliche Formensprache und Farbpalette, die auch in kleinen Inventar-Größen gut lesbar bleibt.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Game Icons</dd></div>
+      <div><dt>Software</dt><dd>Procreate</dd></div>
+      <div><dt>Status</dt><dd>9 Items · 2 final</dd></div>
+      <div><dt>Jahr</dt><dd>2026</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover icon-bg"><div class="grid c2 keep" style="gap:0">
+    <div class="tile icon sq" style="border:0;border-radius:0;background:none"><img src="assets/iconset/00Korallefrei.png" alt="Koralle, finales Icon" data-cap="Koralle – finales Icon"></div>
+    <div class="tile icon sq" style="border:0;border-radius:0;background:none"><img src="assets/iconset/01Perlefrei.png" alt="Perle, finales Icon" data-cap="Perle – finales Icon"></div>
+  </div></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Ideen &amp; Skizzen</h3><p>Alle neun Items auf einer Seite skizziert, um Silhouetten und Größenverhältnisse untereinander abzustimmen.</p></div>
+    <div class="grid c4">
+      <figure class="span2" style="grid-row:span 2"><div class="tile paper" style="height:100%"><img src="assets/iconset/Skizze_Gesamtseite.jpg" alt="Skizzenseite mit allen neun Icons" data-cap="Skizzenseite" style="padding:4%"></div></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Dreizack.jpg" alt="Skizze Dreizack" data-cap="Dreizack"></div><figcaption>Dreizack</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Potion.jpg" alt="Skizze Potion" data-cap="Potion"></div><figcaption>Potion</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Schnecke.jpg" alt="Skizze Schnecke" data-cap="Schnecke"></div><figcaption>Schnecke</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Seestern.jpg" alt="Skizze Seestern" data-cap="Seestern"></div><figcaption>Seestern</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Schatzmesser.jpg" alt="Skizze Schatzmesser" data-cap="Schatzmesser"></div><figcaption>Schatzmesser</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Truhe.jpg" alt="Skizze Truhe" data-cap="Truhe"></div><figcaption>Truhe</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Seepferd.jpg" alt="Skizze Seepferd" data-cap="Seepferd"></div><figcaption>Seepferd</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Koralle.jpg" alt="Skizze Koralle" data-cap="Koralle"></div><figcaption>Koralle <span class="badge">final</span></figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Perle.jpg" alt="Skizze Perle" data-cap="Perle"></div><figcaption>Perle <span class="badge">final</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Farbpalette</h3><p>Eine gemeinsame Palette aus Tiefsee-Tönen, Gold und Koralle hält das Set zusammen. Jedes Icon wird zuerst flächig mit der Palette angelegt.</p>
+      <div class="swatches" aria-label="Farbpalette">
+        <span style="background:#1D2B45" title="Kontur"></span><span style="background:#1B4F5E" title="Tiefsee"></span><span style="background:#2A8A96" title="Petrol"></span><span style="background:#5CC2B8" title="Lagune"></span>
+        <span style="background:#A8641F" title="Bronze"></span><span style="background:#F0B444" title="Gold"></span><span style="background:#E2694F" title="Koralle"></span><span style="background:#9A6FB0" title="Magie"></span>
+        <span style="background:#B3E6DC" title="Gischt"></span><span style="background:#F4E4C4" title="Sand"></span><span style="background:#F2E9F2" title="Perlmutt"></span><span style="background:#FFFDF6" title="Glanz"></span>
+      </div>
+    </div>
+    <div class="grid c2">
+      <figure><div class="tile icon icon-bg sq"><img src="assets/iconset/00KorallePalette.png" alt="Koralle mit Farbpalette" data-cap="Koralle – mit Palette"></div><figcaption>Koralle – mit Palette</figcaption></figure>
+      <figure><div class="tile icon icon-bg sq"><img src="assets/iconset/01Perle_Palette.png" alt="Perle mit Farbpalette" data-cap="Perle – mit Palette"></div><figcaption>Perle – mit Palette</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Base Color → Final</h3><p>Von den flachen Grundfarben zum fertigen Icon mit Licht, Schatten und Glanzpunkten. Zum Vergleichen den Regler ziehen.</p></div>
+    <div class="grid c2">
+      <figure>
+        <div class="compare icon-bg" style="--ar:4/3">
+          <img src="assets/iconset/Koralle_Basecolor.png" alt="Koralle, Base Color" style="object-fit:contain">
+          <img class="top" src="assets/iconset/00Korallefrei.png" alt="Koralle, final" style="object-fit:contain">
+          <span class="lbl l">Final</span><span class="lbl r">Base Color</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Koralle: Final und Base Color">
+        </div>
+        <figcaption>Koralle – Base Color und finales Icon</figcaption>
+      </figure>
+      <figure>
+        <div class="compare icon-bg" style="--ar:4/3">
+          <img src="assets/iconset/Perle_Basecolor_2.png" alt="Perle, Base Color" style="object-fit:contain">
+          <img class="top" src="assets/iconset/01Perlefrei.png" alt="Perle, final" style="object-fit:contain">
+          <span class="lbl l">Final</span><span class="lbl r">Base Color</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Perle: Final und Base Color">
+        </div>
+        <figcaption>Perle – Base Color und finales Icon</figcaption>
+      </figure>
+    </div>
+  </section>
+</div>
+</article>
+<!-- ============ 02 PIXEL ART ============ -->
+<article class="project" id="pixelart">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">02 · Pixel Art</p>
+      <h2>Pixel-Art-Set</h2>
+      <p class="lead">Ein Set aus acht Item-Sprites im 32×32-Raster: Fliegenpilz, Orange, Fisch, Potion, Schnecke, Schwert, Laterne und Schrein – mit begrenzter Palette, klarer Silhouette und Lichtkante, damit jedes Sprite auch in Originalgröße sofort lesbar ist.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Item-Sprites</dd></div>
+      <div><dt>Software</dt><dd>LibreSprite</dd></div>
+      <div><dt>Raster · Palette</dt><dd>32 × 32 px · 64 Farben</dd></div>
+      <div><dt>Status</dt><dd>8 Sprites · abgeschlossen</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover pix-bg cover-set" style="display:grid;align-items:center"><img class="pixel" src="assets/pixelart/mushroom.png" alt="Fliegenpilz" data-cap="Fliegenpilz – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/orange.png" alt="Orange" data-cap="Orange – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/fish.png" alt="Fisch" data-cap="Fisch – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/potion.png" alt="Potion" data-cap="Potion – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/snail.png" alt="Schnecke" data-cap="Schnecke – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/sword.png" alt="Schwert" data-cap="Schwert – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/lantern.png" alt="Laterne" data-cap="Laterne – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"><img class="pixel" src="assets/pixelart/shrine.png" alt="Schrein" data-cap="Schrein – 32 × 32 px" style="width:100%;height:auto;cursor:zoom-in"></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Prozess im Zeitraffer</h3><p>Die Orange von der ersten Linie bis zum fertigen Sprite: Kontur, Grundfarbe, Licht und Schatten, Blatt, Details und Schlagschatten. Achtfach beschleunigt.</p></div>
+    <figure><video src="assets/pixelart/orange_timelapse.mp4" poster="assets/pixelart/orange_timelapse_poster.jpg" style="width:100%;border-radius:16px;border:1px solid var(--line)" autoplay muted loop playsinline controls preload="metadata"></video><figcaption>Orange – Entstehung in LibreSprite (8× Geschwindigkeit)</figcaption></figure>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Sprite-Animation</h3><p>Schwimm-Zyklus des Fischs aus 4 Frames, abgespielt mit 8 fps. Schwanz und Flossen schlagen versetzt, der Körper hebt und senkt sich um ein Pixel.</p></div>
+    <div>
+      <div class="anim-stage pix-bg"><div class="sprite" role="img" aria-label="Animierter Fisch, Schwimm-Zyklus"></div></div>
+      <div class="frames"><figure><img class="pixel pix-bg" src="assets/pixelart/fish1.png" alt="Fisch, Frame 1" data-cap="Fisch – Frame 1 von 4"><figcaption>Frame 1</figcaption></figure><figure><img class="pixel pix-bg" src="assets/pixelart/fish2.png" alt="Fisch, Frame 2" data-cap="Fisch – Frame 2 von 4"><figcaption>Frame 2</figcaption></figure><figure><img class="pixel pix-bg" src="assets/pixelart/fish3.png" alt="Fisch, Frame 3" data-cap="Fisch – Frame 3 von 4"><figcaption>Frame 3</figcaption></figure><figure><img class="pixel pix-bg" src="assets/pixelart/fish4.png" alt="Fisch, Frame 4" data-cap="Fisch – Frame 4 von 4"><figcaption>Frame 4</figcaption></figure></div>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Lesbarkeit in jeder Größe</h3><p>Das Sprite in Originalgröße und ganzzahlig skaliert – ohne Weichzeichnung, jedes Pixel bleibt scharf.</p></div>
+    <div class="scales pix-bg">
+      <figure><img class="pixel" src="assets/pixelart/mushroom.png" alt="Fliegenpilz 1×" width="32" height="32"><figcaption>1× · 32 px</figcaption></figure>
+      <figure><img class="pixel" src="assets/pixelart/mushroom.png" alt="Fliegenpilz 2×" width="64" height="64"><figcaption>2× · 64 px</figcaption></figure>
+      <figure><img class="pixel" src="assets/pixelart/mushroom.png" alt="Fliegenpilz 4×" width="128" height="128"><figcaption>4× · 128 px</figcaption></figure>
+      <figure><img class="pixel" src="assets/pixelart/mushroom.png" alt="Fliegenpilz 8×" width="256" height="256"><figcaption>8× · 256 px</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 04</span><h3>Palette</h3><p>Das ganze Set nutzt die 64-Farben-Standardpalette. Jedes Sprite nutzt nur eine kleine Auswahl davon – zwischen 7 (Fisch) und 13 Farben (Fliegenpilz). Geteilte Rot- und Schattentöne halten das Set zusammen.</p></div>
+    <div class="pal64"><span class="on" style="background:#2e222f" title="#2E222F"></span><span class="on" style="background:#3e3546" title="#3E3546"></span><span class="on" style="background:#625565" title="#625565"></span><span class="on" style="background:#966c6c" title="#966C6C"></span><span class="" style="background:#ab947a" title="#AB947A"></span><span class="" style="background:#694f62" title="#694F62"></span><span class="on" style="background:#7f708a" title="#7F708A"></span><span class="on" style="background:#9babb2" title="#9BABB2"></span><span class="on" style="background:#c7dcd0" title="#C7DCD0"></span><span class="on" style="background:#ffffff" title="#FFFFFF"></span><span class="on" style="background:#6e2727" title="#6E2727"></span><span class="on" style="background:#b33831" title="#B33831"></span><span class="on" style="background:#ea4f36" title="#EA4F36"></span><span class="on" style="background:#f57d4a" title="#F57D4A"></span><span class="on" style="background:#ae2334" title="#AE2334"></span><span class="on" style="background:#e83b3b" title="#E83B3B"></span><span class="on" style="background:#fb6b1d" title="#FB6B1D"></span><span class="on" style="background:#f79617" title="#F79617"></span><span class="on" style="background:#f9c22b" title="#F9C22B"></span><span class="" style="background:#7a3045" title="#7A3045"></span><span class="on" style="background:#9e4539" title="#9E4539"></span><span class="on" style="background:#cd683d" title="#CD683D"></span><span class="on" style="background:#e6904e" title="#E6904E"></span><span class="" style="background:#fbb954" title="#FBB954"></span><span class="" style="background:#4c3e24" title="#4C3E24"></span><span class="" style="background:#676633" title="#676633"></span><span class="" style="background:#a2a947" title="#A2A947"></span><span class="" style="background:#d5e04b" title="#D5E04B"></span><span class="" style="background:#fbff86" title="#FBFF86"></span><span class="on" style="background:#165a4c" title="#165A4C"></span><span class="on" style="background:#239063" title="#239063"></span><span class="on" style="background:#1ebc73" title="#1EBC73"></span><span class="on" style="background:#91db69" title="#91DB69"></span><span class="" style="background:#cddf6c" title="#CDDF6C"></span><span class="" style="background:#313638" title="#313638"></span><span class="" style="background:#374e4a" title="#374E4A"></span><span class="" style="background:#547e64" title="#547E64"></span><span class="" style="background:#92a984" title="#92A984"></span><span class="" style="background:#b2ba90" title="#B2BA90"></span><span class="" style="background:#0b5e65" title="#0B5E65"></span><span class="" style="background:#0b8a8f" title="#0B8A8F"></span><span class="" style="background:#0eaf9b" title="#0EAF9B"></span><span class="" style="background:#30e1b9" title="#30E1B9"></span><span class="" style="background:#8ff8e2" title="#8FF8E2"></span><span class="on" style="background:#323353" title="#323353"></span><span class="on" style="background:#484a77" title="#484A77"></span><span class="on" style="background:#4d65b4" title="#4D65B4"></span><span class="on" style="background:#4d9be6" title="#4D9BE6"></span><span class="on" style="background:#8fd3ff" title="#8FD3FF"></span><span class="on" style="background:#45293f" title="#45293F"></span><span class="" style="background:#6b3e75" title="#6B3E75"></span><span class="" style="background:#905ea9" title="#905EA9"></span><span class="" style="background:#a884f3" title="#A884F3"></span><span class="" style="background:#eaaded" title="#EAADED"></span><span class="" style="background:#753c54" title="#753C54"></span><span class="" style="background:#a24b6f" title="#A24B6F"></span><span class="" style="background:#cf657f" title="#CF657F"></span><span class="" style="background:#ed8099" title="#ED8099"></span><span class="" style="background:#831c5d" title="#831C5D"></span><span class="" style="background:#c32454" title="#C32454"></span><span class="" style="background:#f04f78" title="#F04F78"></span><span class="on" style="background:#f68181" title="#F68181"></span><span class="on" style="background:#fca790" title="#FCA790"></span><span class="on" style="background:#fdcbb0" title="#FDCBB0"></span></div><p class="pal-note"><span class="on-dot"></span> im Set verwendet</p>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 05</span><h3>Das Set</h3><p>Alle acht Sprites im gleichen Raster und mit derselben Palette – vom Fundstück über Waffe und Trank bis zur Architektur.</p></div>
+    <div class="grid c4 keep">
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/mushroom.png" alt="Fliegenpilz" data-cap="Fliegenpilz"></div><figcaption>Fliegenpilz</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/orange.png" alt="Orange" data-cap="Orange"></div><figcaption>Orange</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/fish.png" alt="Fisch" data-cap="Fisch"></div><figcaption>Fisch</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/potion.png" alt="Potion" data-cap="Potion"></div><figcaption>Potion</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/snail.png" alt="Schnecke" data-cap="Schnecke"></div><figcaption>Schnecke</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/sword.png" alt="Schwert" data-cap="Schwert"></div><figcaption>Schwert</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/lantern.png" alt="Laterne" data-cap="Laterne"></div><figcaption>Laterne</figcaption></figure>
+      <figure><div class="tile pix sq pix-bg"><img class="pixel" src="assets/pixelart/shrine.png" alt="Schrein" data-cap="Schrein"></div><figcaption>Schrein</figcaption></figure>
+    </div>
+  </section>
+</div>
+</article>
+<!-- ============ 03 NINTENDO SWITCH ============ -->
+<article class="project" id="nintendo-switch">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">03 · 3D · Hard Surface Modeling</p>
+      <h2>Nintendo Switch</h2>
+      <p class="lead">Ein Hard-Surface-Modell der Nintendo Switch nach Fotoreferenzen. Details wie Tasten, Lüftungsschlitze und Joy-Con-Schienen sind mit Boolean Cuts umgesetzt.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Hard Surface Modeling</dd></div>
+      <div><dt>Software</dt><dd>3ds Max</dd></div>
+      <div><dt>Technik</dt><dd>Boolean Modeling</dd></div>
+      <div><dt>Jahr</dt><dd>2022</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover"><img src="assets/nintendo-switch/Nintendo_Switch_final_render.jpg" alt="Nintendo Switch, finaler Render" data-cap="Nintendo Switch – finaler Render"></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Referenzen</h3><p>Orthografische Ansichten und Detailfotos als Grundlage für Proportionen und Details.</p></div>
+    <div class="grid c4">
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/front_nintendo_cut.jpg" alt="Front" data-cap="Front"></div><figcaption>Front</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/back.jpg" alt="Rückseite" data-cap="Rückseite"></div><figcaption>Rückseite</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/top_nintendo_cut.jpg" alt="Oberseite" data-cap="Oberseite"></div><figcaption>Oberseite</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/side_nintendo_cut.jpg" alt="Seite" data-cap="Seite"></div><figcaption>Seite</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/controllerback.jpg" alt="Controller, Rückseite" data-cap="Controller, Rückseite"></div><figcaption>Controller hinten</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/controllerside1.jpg" alt="Controller, Seite 1" data-cap="Controller, Seite 1"></div><figcaption>Controller Seite 1</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/controllerside2.jpg" alt="Controller, Seite 2" data-cap="Controller, Seite 2"></div><figcaption>Controller Seite 2</figcaption></figure>
+      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/displaynintendo.jpg" alt="Display" data-cap="Display"></div><figcaption>Display</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Wireframe &amp; Boolean Cuts</h3><p>Topologie und Boolean-Operationen im Viewport – oben als Wireframe, unten mit Default Shading.</p></div>
+    <div class="grid">
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/documentation/Model_Wireframes_and_Boolean_Cuts_1.jpg" alt="Wireframe 1" data-cap="Wireframe 1"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/documentation/Model_Wireframes_and_Boolean_Cuts_2.jpg" alt="Wireframe 2" data-cap="Wireframe 2"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/documentation/Model_Wireframes_and_Boolean_Cuts_3.jpg" alt="Wireframe 3" data-cap="Wireframe 3"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/documentation/Model_Default_Shading_and_Boolean_Cuts_1.jpg" alt="Default Shading 1" data-cap="Default Shading 1"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/documentation/Model_Default_Shading_and_Boolean_Cuts_2.jpg" alt="Default Shading 2" data-cap="Default Shading 2"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/documentation/Model_Default_Shading_and_Boolean_Cuts_3.jpg" alt="Default Shading 3" data-cap="Default Shading 3"></div></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Modelldokumentation</h3><p>Das fertige Modell aus mehreren Blickwinkeln.</p></div>
+    <div class="grid">
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/Model_Documentation_1.jpg" alt="Modelldokumentation 1" data-cap="Modelldokumentation 1"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/Model_Documentation_2.jpg" alt="Modelldokumentation 2" data-cap="Modelldokumentation 2"></div></figure>
+      <figure><div class="tile wide"><img src="assets/nintendo-switch/Model_Documentation_3.jpg" alt="Modelldokumentation 3" data-cap="Modelldokumentation 3"></div></figure>
+    </div>
+  </section>
+</div>
+</article>
+<!-- ============ 04 RAMEN WORLD ============ -->
+<article class="project" id="ramen-world">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">04 · 3D · Environment</p>
+      <h2>Ramen World</h2>
+      <p class="lead">Eine kleine, stilisierte japanische Welt rund um einen Ramen-Shop – mit Schrein, Teich und Laternen. Alle Assets wurden einzeln modelliert und anschließend zu einer Szene zusammengesetzt.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Environment</dd></div>
+      <div><dt>Software</dt><dd>Blender</dd></div>
+      <div><dt>Umfang</dt><dd>8 Assets</dd></div>
+      <div><dt>Jahr</dt><dd>2022</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover carousel"><div class="track"><img src="assets/ramen-world/render_ramenshop_close.jpg" alt="Ramen-Shop, Nahaufnahme" data-cap="Ramen-Shop, Nahaufnahme"><img src="assets/ramen-world/render_ramenshop_ramen_close.jpg" alt="Theke mit Ramen" data-cap="Theke mit Ramen"><img src="assets/ramen-world/render_ramenshop_night.jpg" alt="Ramen-Shop bei Nacht" data-cap="Ramen-Shop bei Nacht"></div><button class="cv prev" aria-label="Vorheriges Bild">‹</button><button class="cv next" aria-label="Nächstes Bild">›</button><div class="dots"><button aria-label="Bild 1"></button><button aria-label="Bild 2"></button><button aria-label="Bild 3"></button></div></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Referenzen</h3><p>Moodboard für Architektur, Stimmung und Farbwelt der Szene.</p></div>
+    <div class="grid c4">
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_1.jpg" alt="Referenz 1" data-cap="Referenz 1"></div></figure>
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_2.jpg" alt="Referenz 2" data-cap="Referenz 2"></div></figure>
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_3.jpg" alt="Referenz 3" data-cap="Referenz 3"></div></figure>
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_4.jpg" alt="Referenz 4" data-cap="Referenz 4"></div></figure>
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_5.jpg" alt="Referenz 5" data-cap="Referenz 5"></div></figure>
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_6.jpg" alt="Referenz 6" data-cap="Referenz 6"></div></figure>
+      <figure><div class="tile sq"><img src="assets/ramen-world/references/reference_7.jpg" alt="Referenz 7" data-cap="Referenz 7"></div></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Assets: Clay → Render</h3><p>Jedes Asset als Clay-Render (reine Form) und mit Material und Licht. Regler ziehen zum Vergleichen.</p></div>
+    <div class="grid c2">
+      <figure><div class="compare"><img src="assets/ramen-world/render_ramen_clay.jpg" alt="Ramen-Schale, Clay"><img class="top" src="assets/ramen-world/render_ramen.jpg" alt="Ramen-Schale, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Ramen-Schale"></div><figcaption>Ramen-Schale</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_lantern_clay.jpg" alt="Laterne, Clay"><img class="top" src="assets/ramen-world/render_lantern.jpg" alt="Laterne, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Laterne"></div><figcaption>Laterne</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_shrine_clay.jpg" alt="Schrein, Clay"><img class="top" src="assets/ramen-world/render_shrine.jpg" alt="Schrein, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Schrein"></div><figcaption>Schrein</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_shrine_side_clay.jpg" alt="Schrein seitlich, Clay"><img class="top" src="assets/ramen-world/render_shrine_side.jpg" alt="Schrein seitlich, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Schrein Seitenansicht"></div><figcaption>Schrein – Seitenansicht</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_pond_clay.jpg" alt="Teich, Clay"><img class="top" src="assets/ramen-world/render_pond.jpg" alt="Teich, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Teich"></div><figcaption>Teich</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_flower_clay.jpg" alt="Blume, Clay"><img class="top" src="assets/ramen-world/render_flower.jpg" alt="Blume, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Blume"></div><figcaption>Blume</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_flower1_clay.jpg" alt="Blume Variante, Clay"><img class="top" src="assets/ramen-world/render_flower1.jpg" alt="Blume Variante, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Blume Variante"></div><figcaption>Blume – Variante</figcaption></figure>
+      <figure><div class="compare"><img src="assets/ramen-world/render_grass_clay.jpg" alt="Gras, Clay"><img class="top" src="assets/ramen-world/render_grass.jpg" alt="Gras, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Gras"></div><figcaption>Gras</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Ramen-Shop</h3><p>Das Hauptgebäude der Szene – in verschiedenen Perspektiven und Lichtstimmungen von Tag bis Nacht.</p></div>
+    <div class="grid c2">
+      <figure><div class="compare" style="--ar:1600/993"><img src="assets/ramen-world/render_ramenshopkk_clay.jpg" alt="Ramen-Shop bei Tag, Clay"><img class="top" src="assets/ramen-world/render_ramenshop_day.jpg" alt="Ramen-Shop bei Tag, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Ramen-Shop bei Tag"></div><figcaption>Tag – Clay und Render</figcaption></figure>
+      <figure><div class="compare" style="--ar:1600/993"><img src="assets/ramen-world/render_ramenshop_side_clay.jpg" alt="Ramen-Shop Seitenansicht, Clay"><img class="top" src="assets/ramen-world/render_ramenshop_day_side.jpg" alt="Ramen-Shop Seitenansicht, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Ramen-Shop Seitenansicht"></div><figcaption>Seitenansicht – Clay und Render</figcaption></figure>
+      <figure><div class="tile wide"><img src="assets/ramen-world/render_ramenshop_close.jpg" alt="Ramen-Shop, Nahaufnahme" data-cap="Ramen-Shop, Nahaufnahme"></div><figcaption>Detail – Nahaufnahme</figcaption></figure>
+      <figure><div class="tile wide"><img src="assets/ramen-world/render_ramenshop_ramen_close.jpg" alt="Theke mit Ramen" data-cap="Theke mit Ramen"></div><figcaption>Detail – Theke</figcaption></figure>
+    </div>
+  </section>
+
+</div>
+</article>
+<!-- ============ 05 WASSERFALL ============ -->
+<article class="project" id="wasserfall">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">05 · 3D · Animation</p>
+      <h2>Wasserfall</h2>
+      <p class="lead">Eine animierte Wasserfall-Szene, umgesetzt mit Grease Pencil in Blender – gezeichnete 2D-Linien und -Flächen direkt im 3D-Raum.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Animation</dd></div>
+      <div><dt>Software</dt><dd>Blender</dd></div>
+      <div><dt>Technik</dt><dd>Grease Pencil</dd></div>
+      <div><dt>Jahr</dt><dd>2021</dd></div>
+    </dl>
+  </div>
+  <section class="step" style="margin-top:0">
+    <div class="step-info"><span class="n">ANIMATION</span><h3>Wasserfall in Bewegung</h3><p>Die fertige Loop-Animation sowie zwei Standbilder aus unterschiedlichen Blickwinkeln.</p></div>
+    <div class="grid c2">
+      <figure class="span2"><video src="assets/ramen-world/original/rendered_waterfall_animation.mp4" style="width:100%;border-radius:16px" autoplay muted loop playsinline controls></video><figcaption>Wasserfall – Animation</figcaption></figure>
+      <figure><div class="tile wide"><img src="assets/ramen-world/waterfall_render_front.jpg" alt="Wasserfall, Frontansicht" data-cap="Wasserfall, Frontansicht"></div><figcaption>Frontansicht</figcaption></figure>
+      <figure><div class="tile wide"><img src="assets/ramen-world/waterfall_render.jpg" alt="Wasserfall" data-cap="Wasserfall"></div><figcaption>Gesamtansicht</figcaption></figure>
+    </div>
+  </section>
+</div>
+</article>
+
+<!-- ============ 06 EINZELARBEITEN ============ -->
+<article class="project" id="einzelarbeiten">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">06 · 3D</p>
+      <h2>3D-Einzelarbeiten</h2>
+      <p class="lead">Kleinere Modelling-Studien: ein stilisierter Brunnen, ein isometrisches Badezimmer-Diorama und ein Tisch mit gesteckten Holzverbindungen.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Props &amp; Diorama</dd></div>
+      <div><dt>Software</dt><dd>Blender</dd></div>
+    </dl>
+  </div>
+
+  <section class="step" style="margin-top:0">
+    <div class="step-info"><span class="n">ARBEIT 01</span><h3>Brunnen</h3><p>Stilisierter Brunnen mit Ziegeldach und Steinmauerwerk, in drei Ansichten.</p></div>
+    <div class="grid">
+      <figure><div class="tile wide"><img src="assets/3d-einzeln/well1.jpg" alt="Brunnen, Ansicht 1" data-cap="Brunnen – Ansicht 1"></div></figure>
+      <figure><div class="tile wide"><img src="assets/3d-einzeln/well2.jpg" alt="Brunnen, Ansicht 2" data-cap="Brunnen – Ansicht 2"></div></figure>
+      <figure><div class="tile wide"><img src="assets/3d-einzeln/well3.jpg" alt="Brunnen, Ansicht 3" data-cap="Brunnen – Ansicht 3"></div></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">ARBEIT 02</span><h3>Badezimmer-Diorama</h3><p>Isometrischer Raum mit warmer Beleuchtung, Pflanzen und Kerzen.</p></div>
+    <div class="grid c2"><figure><div class="tile sq"><img src="assets/3d-einzeln/untitled.jpg" alt="Isometrisches Badezimmer-Diorama" data-cap="Badezimmer-Diorama"></div></figure></div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">ARBEIT 03</span><h3>Tisch</h3><p>Möbelstück mit gesteckten Holzverbindungen – als Clay-Render und mit Material.</p></div>
+    <div class="grid c2">
+      <figure><div class="compare" style="--ar:16/9"><img src="assets/3d-einzeln/rendered2.jpg" alt="Tisch, Clay"><img class="top" src="assets/3d-einzeln/rendered.jpg" alt="Tisch, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Tisch Ansicht 1"></div><figcaption>Ansicht 1</figcaption></figure>
+      <figure><div class="compare" style="--ar:16/9"><img src="assets/3d-einzeln/rendered4.jpg" alt="Tisch, Clay"><img class="top" src="assets/3d-einzeln/rendered3.jpg" alt="Tisch, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Tisch Ansicht 2"></div><figcaption>Ansicht 2</figcaption></figure>
+    </div>
+  </section>
+</div>
+</article>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Sophia Lattermann</span><a href="#top">Nach oben ↑</a></div></footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Bildansicht">
+  <img alt="">
+  <span class="cap"></span>
+  <button class="x" aria-label="Schließen">×</button>
+  <button class="prev" aria-label="Vorheriges Bild">‹</button>
+  <button class="next" aria-label="Nächstes Bild">›</button>
+</div>
+
+<script>
+// Clay/Render-Vergleichsregler
+document.querySelectorAll('.compare input').forEach(r => {
+  const set = () => r.parentElement.style.setProperty('--pos', r.value + '%');
+  r.addEventListener('input', set); set();
+});
+
+// Lightbox mit Vor/Zurück
+// Titelbild-Slider
+document.querySelectorAll('.carousel').forEach(c => {
+  const t = c.querySelector('.track'), dots = [...c.querySelectorAll('.dots button')], n = dots.length;
+  const idx = () => Math.round(t.scrollLeft / t.clientWidth);
+  const go = k => {
+    const left = ((k + n) % n) * t.clientWidth;
+    t.scrollTo({ left, behavior: 'smooth' });
+    setTimeout(() => { if (Math.abs(t.scrollLeft - left) > 2) t.scrollLeft = left; mark(); }, 700); // falls Smooth-Scroll nicht greift
+  };
+  const mark = () => dots.forEach((d, k) => d.classList.toggle('on', k === idx()));
+  c.querySelector('.prev').onclick = () => go(idx() - 1);
+  c.querySelector('.next').onclick = () => go(idx() + 1);
+  dots.forEach((d, k) => d.onclick = () => go(k));
+  t.addEventListener('scroll', mark); mark();
+});
+
+const imgs = [...document.querySelectorAll('.tile img, .cover > img, .carousel img')];
+const lb = document.getElementById('lb'), li = lb.querySelector('img'), cap = lb.querySelector('.cap');
+let cur = 0;
+const show = n => { cur = (n + imgs.length) % imgs.length; li.src = imgs[cur].currentSrc || imgs[cur].src; li.alt = imgs[cur].alt; cap.textContent = imgs[cur].dataset.cap || imgs[cur].alt; };
+const close = () => lb.classList.remove('open');
+imgs.forEach((im, n) => im.addEventListener('click', () => { show(n); lb.classList.add('open'); }));
+lb.querySelector('.x').onclick = close;
+lb.querySelector('.prev').onclick = () => show(cur - 1);
+lb.querySelector('.next').onclick = () => show(cur + 1);
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowLeft') show(cur - 1);
+  if (e.key === 'ArrowRight') show(cur + 1);
+});
+
+// Aktiven Navigationspunkt markieren
+const links = [...document.querySelectorAll('.topbar nav a')];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  const id = ['ramen-world', 'wasserfall', 'einzelarbeiten'].includes(e.target.id) ? 'nintendo-switch' : e.target.id; // alle 3D-Projekte → „3D“
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.hash === '#' + id));
+}), { rootMargin: '-40% 0px -55% 0px' });
+document.querySelectorAll('.project').forEach(p => io.observe(p));
+</script>
+</body>
+</html>
