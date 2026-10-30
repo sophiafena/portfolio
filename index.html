@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sophia Lattermann – Game Art Portfolio</title>
-<meta name="description" content="Game Art Portfolio von Sophia Lattermann: Icons, 3D-Environments und Hard-Surface-Modelle.">
+<title>Sophia Lattermann – 2D / 3D Artist Portfolio</title>
+<meta name="description" content="2D / 3D Artist Portfolio von Sophia Lattermann: Icons, Figurenzeichnung, Pixel Art, 3D-Environments und Hard-Surface-Modelle.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,9 +40,9 @@ a{color:inherit}
 .card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)Den Fisch bitte als Vorschau. In den Cards;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s}
 .card:hover{transform:translateY(-4px);border-color:var(--accent)}
 .card .thumb{aspect-ratio:4/3;background:var(--surface-2);overflow:hidden}
-.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card .thumb img,.card .thumb video{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .card .thumb.contain img{object-fit:contain;padding:3%}
-.card:hover .thumb img{transform:scale(1.04)}
+.card:hover .thumb img,.card:hover .thumb video{transform:scale(1.04)}
 .card .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:4px}
 .card .num{font-size:13px;color:var(--accent);font-weight:600}
 .card h3{font-size:20px;font-weight:600;letter-spacing:-.01em}
@@ -124,12 +124,52 @@ figcaption{font-size:14px;color:var(--muted);padding-top:10px}
 .frames figure{display:flex;flex-direction:column;align-items:center}
 .frames img{width:100%;border-radius:12px;border:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){.sprite{animation:none}}
+.card-ph .thumb{display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--surface-2) 0 14px,var(--surface) 14px 28px)}
+.ph-label{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:6px 14px;background:var(--surface)}
+.cover.ph{aspect-ratio:16/7;display:grid;place-items:center;border:2px dashed var(--line);background:transparent}
 .card-ext{border-style:dashed;background:transparent}
 .card-ext .thumb{display:grid;place-items:center;background:linear-gradient(135deg,var(--surface-2),var(--surface))}
 .ext-arrow{font-size:clamp(56px,7vw,88px);color:var(--accent);line-height:1;transition:transform .3s}
 .card-ext:hover .ext-arrow{transform:translate(6px,-6px)}
 .cover-set{grid-template-columns:repeat(8,1fr);gap:2.5%;padding:5% 5%}
 @media (max-width:560px){.cover-set{grid-template-columns:repeat(4,1fr);row-gap:8%}}
+.pal12{grid-template-columns:repeat(12,minmax(0,1fr))}
+@media (max-width:560px){.pal12{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.icon-set{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,2vw,24px);padding:clamp(16px,3vw,40px)}
+.icon-set figure{display:flex;flex-direction:column;align-items:center}
+.icon-set img{width:100%;aspect-ratio:1;object-fit:contain;cursor:zoom-in}
+.icon-set figcaption{color:var(--text);font-weight:500;padding-top:4px;text-align:center}
+.icon-set .wip img{opacity:.92}
+.slot-ph{width:100%;aspect-ratio:1;border:2px dashed rgba(255,255,255,.25);border-radius:20px;display:grid;place-items:center;color:var(--muted);font-size:14px}
+.badge.muted{background:rgba(255,255,255,.12);color:var(--muted)}
+@media (max-width:560px){.icon-set{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.inv{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);background:#1D2B45;border:2px solid #2A8A96;border-radius:28px;padding:clamp(16px,3vw,36px)}
+.inv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-content:start}
+.inv-slot{position:relative;aspect-ratio:1;border-radius:16px;background:#1B4F5E;border:3px solid var(--rar,#2A4560);padding:0;cursor:pointer;display:grid;place-items:center;overflow:hidden;transition:transform .15s}
+.inv-slot:hover{transform:translateY(-2px)}
+.inv-slot img{width:88%;height:88%;object-fit:contain;pointer-events:none}
+.inv-slot span{position:absolute;right:7px;bottom:4px;font-size:13px;font-weight:700;color:#FFFDF6;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.inv-slot.sel{border-color:#FFFDF6;box-shadow:0 0 0 3px rgba(255,253,246,.25)}
+.inv-slot.empty{background:#16243D;border:2px dashed #2A4560;cursor:default}
+.inv-slot.empty:hover{transform:none}
+.inv-detail{display:flex;flex-direction:column;gap:12px;padding-left:clamp(0px,3vw,36px);border-left:1px solid #2A4560}
+.inv-big{width:min(100%,240px);aspect-ratio:1;border-radius:32px;background:#1B4F5E;border:4px solid var(--rar,#2A8A96);display:grid;place-items:center}
+.inv-big img{width:88%;height:88%;object-fit:contain}
+.inv-detail h4{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.inv-rar{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.inv-detail p{color:var(--muted);font-size:15px}.inv-detail strong{color:var(--text)}
+.inv-actions{display:flex;gap:10px;flex-wrap:wrap;padding-top:4px}
+.inv-actions button{font:inherit;font-size:15px;font-weight:600;padding:11px 22px;border-radius:999px;cursor:pointer}
+.btn-gold{background:#F0B444;color:#5A3A08;border:0}
+.btn-line{background:transparent;color:#B3E6DC;border:1px solid #5CC2B8}
+@media (max-width:760px){.inv{grid-template-columns:1fr}.inv-detail{border-left:0;padding-left:0;border-top:1px solid #2A4560;padding-top:20px}}
+.stack{display:grid;gap:40px}
+.art-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.art-grid .tile.art{aspect-ratio:1/1}
+.art-grid figure:nth-child(-n+2) .tile.art{aspect-ratio:3/4}
+.art-grid .tile.art img{width:100%;height:100%;display:block}
+.art-grid .tile.art img{object-fit:cover}
+@media (max-width:560px){.art-grid{grid-template-columns:1fr}}
 .badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--accent);color:var(--accent-ink);margin-left:6px;vertical-align:1px}
 
 footer{border-top:1px solid var(--line);padding:40px 0 56px;color:var(--muted);font-size:14px}
@@ -167,8 +207,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
     <a class="brand" href="#top">Sophia Lattermann</a>
     <nav aria-label="Projekte">
       <a href="#iconset">Illustrated Icons</a>
+      <a href="#character">Character</a>
       <a href="#pixelart">Pixel Art</a>
+      <a href="#koerper">Körper</a>
+      <a href="#portrait">Portrait</a>
       <a href="#nintendo-switch">3D</a>
+      <a href="#malerei">Malerei</a>
                 </nav>
   </div>
 </header>
@@ -177,36 +221,51 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 <div class="wrap">
 
   <section class="hero">
-    <p class="kicker">Game Art Portfolio</p>
+    <p class="kicker">2D / 3D Artist Portfolio</p>
     <h1>Sophia Lattermann</h1>
-    <p>Illustrierte Icons, Pixel Art und 3D-Arbeiten – jeweils mit dem Prozess von Skizze und Referenz bis zum finalen Render.</p>
   </section>
 
   <!-- Inhaltsverzeichnis -->
   <nav class="overview" aria-label="Inhaltsverzeichnis">
     <a class="card" href="#iconset">
-      <div class="thumb contain icon-bg"><img src="assets/iconset/card_perle.png" alt="" style="padding:9%"></div>
+      <div class="thumb contain icon-bg"><img src="assets/iconset/web/card_three.png" alt="" style="padding:2%"></div>
       <div class="body"><span class="num">01</span><h3>Maritimes Iconset</h3><span class="tags">Illustrated Icons · Procreate</span></div>
+    </a>
+    <a class="card" href="#character">
+      <div class="thumb" style="background:#B2B2B2"><img src="assets/character/char_card.jpg" alt=""></div>
+      <div class="body"><span class="num">02</span><h3>Character Design &amp; Illustration</h3><span class="tags">Character Design · Procreate</span></div>
     </a>
     <a class="card" href="#pixelart">
       <div class="thumb contain pix-bg"><div class="sprite" role="img" aria-label="Animierter Pixel-Art-Fisch"></div></div>
-      <div class="body"><span class="num">02</span><h3>Pixel-Art-Set</h3><span class="tags">Pixel Art · Sprites · LibreSprite</span></div>
+      <div class="body"><span class="num">03</span><h3>Pixel-Art-Set</h3><span class="tags">Pixel Art · Sprites · LibreSprite</span></div>
+    </a>
+    <a class="card" href="#koerper">
+      <div class="thumb" style="background:#E8DFD3"><img src="assets/figur/body_card.jpg" alt=""></div>
+      <div class="body"><span class="num">04</span><h3>Körperskizzen</h3><span class="tags">Skizzen · Pose &amp; Bewegung</span></div>
+    </a>
+    <a class="card" href="#portrait">
+      <div class="thumb" style="background:#E8DFD3"><img src="assets/figur/portrait_card.jpg" alt=""></div>
+      <div class="body"><span class="num">05</span><h3>Portraitskizzen</h3><span class="tags">Skizzen · Gesicht &amp; Ausdruck</span></div>
     </a>
     <a class="card" href="#nintendo-switch">
       <div class="thumb"><img src="assets/nintendo-switch/Nintendo_Switch_final_render.jpg" alt=""></div>
-      <div class="body"><span class="num">03</span><h3>Nintendo Switch</h3><span class="tags">3D · Hard Surface Modeling · 3ds Max</span></div>
+      <div class="body"><span class="num">06</span><h3>Nintendo Switch</h3><span class="tags">3D · Hard Surface Modeling · 3ds Max</span></div>
     </a>
     <a class="card" href="#ramen-world">
       <div class="thumb"><img src="assets/ramen-world/render_ramenshop_close.jpg" alt=""></div>
-      <div class="body"><span class="num">04</span><h3>Ramen World</h3><span class="tags">3D · Environment · Blender</span></div>
+      <div class="body"><span class="num">07</span><h3>Ramen World</h3><span class="tags">3D · Environment · Blender</span></div>
     </a>
     <a class="card" href="#wasserfall">
       <div class="thumb"><img src="assets/ramen-world/waterfall_render_front.jpg" alt=""></div>
-      <div class="body"><span class="num">05</span><h3>Wasserfall</h3><span class="tags">3D · Grease Pencil · Blender</span></div>
+      <div class="body"><span class="num">08</span><h3>Wasserfall</h3><span class="tags">3D · Grease Pencil · Blender</span></div>
     </a>
     <a class="card" href="#einzelarbeiten">
       <div class="thumb"><img src="assets/3d-einzeln/untitled.jpg" alt=""></div>
-      <div class="body"><span class="num">06</span><h3>3D-Einzelarbeiten</h3><span class="tags">3D · Props &amp; Diorama · Blender</span></div>
+      <div class="body"><span class="num">09</span><h3>3D-Einzelarbeiten</h3><span class="tags">3D · Props &amp; Diorama · Blender</span></div>
+    </a>
+    <a class="card" href="#malerei">
+      <div class="thumb"><img src="assets/kunst/web/surreal2.jpg" alt="" style="object-position:center 30%"></div>
+      <div class="body"><span class="num">10</span><h3>Malerei</h3><span class="tags">Traditionelle Malerei</span></div>
     </a>
     <a class="card card-ext" href="https://sophiafena.github.io/ux/" target="_blank" rel="noopener">
       <div class="thumb"><span class="ext-arrow" aria-hidden="true">↗</span></div>
@@ -223,82 +282,164 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
     <div>
       <p class="kicker">01 · Illustrated Icons</p>
       <h2>Maritimes Iconset</h2>
-      <p class="lead">Neun Item-Icons für ein Unterwasser-Game. Ziel war eine einheitliche Formensprache und Farbpalette, die auch in kleinen Inventar-Größen gut lesbar bleibt.</p>
+      <p class="lead">Acht Item-Icons für ein Unterwasser-Game. Ziel war eine einheitliche Formensprache und Farbpalette, die auch in kleinen Inventar-Größen gut lesbar bleibt. Drei Icons sind fertig, die übrigen liegen als Base Color vor.</p>
     </div>
     <dl class="facts">
       <div><dt>Typ</dt><dd>Game Icons</dd></div>
       <div><dt>Software</dt><dd>Procreate</dd></div>
-      <div><dt>Status</dt><dd>9 Items · 2 final</dd></div>
+      <div><dt>Status</dt><dd>8 Items · 3 final</dd></div>
       <div><dt>Jahr</dt><dd>2026</dd></div>
     </dl>
   </div>
 
-  <div class="cover icon-bg"><div class="grid c2 keep" style="gap:0">
-    <div class="tile icon sq" style="border:0;border-radius:0;background:none"><img src="assets/iconset/00Korallefrei.png" alt="Koralle, finales Icon" data-cap="Koralle – finales Icon"></div>
-    <div class="tile icon sq" style="border:0;border-radius:0;background:none"><img src="assets/iconset/01Perlefrei.png" alt="Perle, finales Icon" data-cap="Perle – finales Icon"></div>
-  </div></div>
+  <div class="cover icon-bg icon-set">
+    <figure><img src="assets/iconset/web/perle_final.png" alt="Perle, finales Icon" data-cap="Perle – final"><figcaption>Perle</figcaption></figure>
+    <figure><img src="assets/iconset/web/stern_final.png" alt="Seestern, finales Icon" data-cap="Seestern – final"><figcaption>Seestern</figcaption></figure>
+    <figure><img src="assets/iconset/web/koralle_final.png" alt="Koralle, finales Icon" data-cap="Koralle – final"><figcaption>Koralle</figcaption></figure>
+    <figure class="wip"><img src="assets/iconset/web/dreizack_base.png" alt="Dreizack, Base Color" data-cap="Dreizack – Base Color"><figcaption>Dreizack <span class="badge muted">Base Color</span></figcaption></figure>
+    <figure class="wip"><img src="assets/iconset/web/potion_base.png" alt="Potion, Base Color" data-cap="Potion – Base Color"><figcaption>Potion <span class="badge muted">Base Color</span></figcaption></figure>
+    <figure class="wip"><img src="assets/iconset/web/schwert_base.png" alt="Schwert, Base Color" data-cap="Schwert – Base Color"><figcaption>Schwert <span class="badge muted">Base Color</span></figcaption></figure>
+    <figure class="wip"><img src="assets/iconset/web/seedrache_base.png" alt="Seedrache, Base Color" data-cap="Seedrache – Base Color"><figcaption>Seedrache <span class="badge muted">Base Color</span></figcaption></figure>
+    <figure class="wip"><img src="assets/iconset/web/muschel_base.png" alt="Muschel, Base Color" data-cap="Muschel – Base Color"><figcaption>Muschel <span class="badge muted">Base Color</span></figcaption></figure>
+  </div>
 
   <section class="step">
-    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Ideen &amp; Skizzen</h3><p>Alle neun Items auf einer Seite skizziert, um Silhouetten und Größenverhältnisse untereinander abzustimmen.</p></div>
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Ideen &amp; Skizzen</h3><p>Bleistiftskizzen auf Papier: erste Ideen für das Set auf einer Seite, um Silhouetten und Größenverhältnisse untereinander abzustimmen.</p></div>
     <div class="grid c4">
-      <figure class="span2" style="grid-row:span 2"><div class="tile paper" style="height:100%"><img src="assets/iconset/Skizze_Gesamtseite.jpg" alt="Skizzenseite mit allen neun Icons" data-cap="Skizzenseite" style="padding:4%"></div></figure>
+      <figure class="span2" style="grid-row:span 2"><div class="tile paper" style="height:100%"><img src="assets/iconset/Skizze_Gesamtseite.jpg" alt="Skizzenseite mit allen Ideen" data-cap="Skizzenseite" style="padding:4%"></div></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Perle.jpg" alt="Skizze Perle" data-cap="Perle"></div><figcaption>Perle <span class="badge">final</span></figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Seestern.jpg" alt="Skizze Seestern" data-cap="Seestern"></div><figcaption>Seestern <span class="badge">final</span></figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Koralle.jpg" alt="Skizze Koralle" data-cap="Koralle"></div><figcaption>Koralle <span class="badge">final</span></figcaption></figure>
       <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Dreizack.jpg" alt="Skizze Dreizack" data-cap="Dreizack"></div><figcaption>Dreizack</figcaption></figure>
       <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Potion.jpg" alt="Skizze Potion" data-cap="Potion"></div><figcaption>Potion</figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Schnecke.jpg" alt="Skizze Schnecke" data-cap="Schnecke"></div><figcaption>Schnecke</figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Seestern.jpg" alt="Skizze Seestern" data-cap="Seestern"></div><figcaption>Seestern</figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Schatzmesser.jpg" alt="Skizze Schatzmesser" data-cap="Schatzmesser"></div><figcaption>Schatzmesser</figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Truhe.jpg" alt="Skizze Truhe" data-cap="Truhe"></div><figcaption>Truhe</figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Seepferd.jpg" alt="Skizze Seepferd" data-cap="Seepferd"></div><figcaption>Seepferd</figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Koralle.jpg" alt="Skizze Koralle" data-cap="Koralle"></div><figcaption>Koralle <span class="badge">final</span></figcaption></figure>
-      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Perle.jpg" alt="Skizze Perle" data-cap="Perle"></div><figcaption>Perle <span class="badge">final</span></figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Schatzmesser.jpg" alt="Skizze Schatzmesser" data-cap="Schatzmesser → Schwert"></div><figcaption>Schatzmesser → Schwert</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Seepferd.jpg" alt="Skizze Seepferd" data-cap="Seepferd → Seedrache"></div><figcaption>Seepferd → Seedrache</figcaption></figure>
+      <figure><div class="tile paper sq"><img src="assets/iconset/Skizze_Schnecke.jpg" alt="Skizze Schnecke" data-cap="Schnecke → Muschel"></div><figcaption>Schnecke → Muschel</figcaption></figure>
     </div>
   </section>
 
   <section class="step">
     <div class="step-info"><span class="n">SCHRITT 02</span><h3>Farbpalette</h3><p>Eine gemeinsame Palette aus Tiefsee-Tönen, Gold und Koralle hält das Set zusammen. Jedes Icon wird zuerst flächig mit der Palette angelegt.</p>
-      <div class="swatches" aria-label="Farbpalette">
-        <span style="background:#1D2B45" title="Kontur"></span><span style="background:#1B4F5E" title="Tiefsee"></span><span style="background:#2A8A96" title="Petrol"></span><span style="background:#5CC2B8" title="Lagune"></span>
-        <span style="background:#A8641F" title="Bronze"></span><span style="background:#F0B444" title="Gold"></span><span style="background:#E2694F" title="Koralle"></span><span style="background:#9A6FB0" title="Magie"></span>
-        <span style="background:#B3E6DC" title="Gischt"></span><span style="background:#F4E4C4" title="Sand"></span><span style="background:#F2E9F2" title="Perlmutt"></span><span style="background:#FFFDF6" title="Glanz"></span>
-      </div>
     </div>
-    <div class="grid c2">
-      <figure><div class="tile icon icon-bg sq"><img src="assets/iconset/00KorallePalette.png" alt="Koralle mit Farbpalette" data-cap="Koralle – mit Palette"></div><figcaption>Koralle – mit Palette</figcaption></figure>
-      <figure><div class="tile icon icon-bg sq"><img src="assets/iconset/01Perle_Palette.png" alt="Perle mit Farbpalette" data-cap="Perle – mit Palette"></div><figcaption>Perle – mit Palette</figcaption></figure>
+    <div>
+      <div class="pal64 pal12"><span style="background:#1D2B45" title="Kontur #1D2B45"></span><span style="background:#1B4F5E" title="Tiefsee #1B4F5E"></span><span style="background:#2A8A96" title="Petrol #2A8A96"></span><span style="background:#5CC2B8" title="Lagune #5CC2B8"></span><span style="background:#A8641F" title="Bronze #A8641F"></span><span style="background:#F0B444" title="Gold #F0B444"></span><span style="background:#E2694F" title="Koralle #E2694F"></span><span style="background:#9A6FB0" title="Magie #9A6FB0"></span><span style="background:#B3E6DC" title="Gischt #B3E6DC"></span><span style="background:#F4E4C4" title="Sand #F4E4C4"></span><span style="background:#F2E9F2" title="Perlmutt #F2E9F2"></span><span style="background:#FFFDF6" title="Glanz #FFFDF6"></span></div>
+      <div class="grid" style="margin-top:32px">
+        <figure><div class="tile wide" style="aspect-ratio:4/3"><img src="assets/iconset/web/perle_palette.jpg" alt="Perle mit Farbpalette" data-cap="Perle – mit Palette"></div><figcaption>Perle – mit Palette</figcaption></figure>
+        <figure><div class="tile wide" style="aspect-ratio:4/3"><img src="assets/iconset/web/stern_palette.jpg" alt="Seestern mit Farbpalette" data-cap="Seestern – mit Palette"></div><figcaption>Seestern – mit Palette</figcaption></figure>
+        <figure><div class="tile wide" style="aspect-ratio:4/3"><img src="assets/iconset/web/koralle_palette.jpg" alt="Koralle mit Farbpalette" data-cap="Koralle – mit Palette"></div><figcaption>Koralle – mit Palette</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <section class="step">
     <div class="step-info"><span class="n">SCHRITT 03</span><h3>Base Color → Final</h3><p>Von den flachen Grundfarben zum fertigen Icon mit Licht, Schatten und Glanzpunkten. Zum Vergleichen den Regler ziehen.</p></div>
-    <div class="grid c2">
+    <div class="stack">
       <figure>
         <div class="compare icon-bg" style="--ar:4/3">
-          <img src="assets/iconset/Koralle_Basecolor.png" alt="Koralle, Base Color" style="object-fit:contain">
-          <img class="top" src="assets/iconset/00Korallefrei.png" alt="Koralle, final" style="object-fit:contain">
-          <span class="lbl l">Final</span><span class="lbl r">Base Color</span><span class="bar"></span>
-          <input type="range" value="50" aria-label="Vergleich Koralle: Final und Base Color">
-        </div>
-        <figcaption>Koralle – Base Color und finales Icon</figcaption>
-      </figure>
-      <figure>
-        <div class="compare icon-bg" style="--ar:4/3">
-          <img src="assets/iconset/Perle_Basecolor_2.png" alt="Perle, Base Color" style="object-fit:contain">
-          <img class="top" src="assets/iconset/01Perlefrei.png" alt="Perle, final" style="object-fit:contain">
-          <span class="lbl l">Final</span><span class="lbl r">Base Color</span><span class="bar"></span>
+          <img src="assets/iconset/web/perle_base_full.png" alt="Perle, Base Color" style="object-fit:contain">
+          <img class="top" src="assets/iconset/web/perle_final_full.png" alt="Perle, final" style="object-fit:contain">
+          <span class="lbl l">Final</span><span class="lbl r">Base</span><span class="bar"></span>
           <input type="range" value="50" aria-label="Vergleich Perle: Final und Base Color">
         </div>
-        <figcaption>Perle – Base Color und finales Icon</figcaption>
+        <figcaption>Perle</figcaption>
       </figure>
+      <figure>
+        <div class="compare icon-bg" style="--ar:4/3">
+          <img src="assets/iconset/web/stern_base_full.png" alt="Seestern, Base Color" style="object-fit:contain">
+          <img class="top" src="assets/iconset/web/stern_final_full.png" alt="Seestern, final" style="object-fit:contain">
+          <span class="lbl l">Final</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Seestern: Final und Base Color">
+        </div>
+        <figcaption>Seestern</figcaption>
+      </figure>
+      <figure>
+        <div class="compare icon-bg" style="--ar:4/3">
+          <img src="assets/iconset/web/koralle_base_full.png" alt="Koralle, Base Color" style="object-fit:contain">
+          <img class="top" src="assets/iconset/web/koralle_final_full.png" alt="Koralle, final" style="object-fit:contain">
+          <span class="lbl l">Final</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Koralle: Final und Base Color">
+        </div>
+        <figcaption>Koralle</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 04</span><h3>Überarbeitung Perle</h3><p>Die Perle wurde nachträglich neu gestaltet. Die erste Version mit großer Muschel war visuell deutlich schwerer als die übrigen Icons. Die neue Fassung übernimmt den Aufbau der anderen Items – Motiv mittig, Algen als Rahmen – und passt sich so in Gewicht und Bildaufbau ins Set ein.</p></div>
+    <div class="grid c2 keep">
+      <figure><div class="tile icon icon-bg sq"><img src="assets/iconset/web/perle_alt.png" alt="Perle, erste Version" data-cap="Perle – erste Version"></div><figcaption>Vorher – erste Version</figcaption></figure>
+      <figure><div class="tile icon icon-bg sq"><img src="assets/iconset/web/perle_final.png" alt="Perle, überarbeitete Version" data-cap="Perle – überarbeitet"></div><figcaption>Nachher – überarbeitet</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 05</span><h3>Im Inventar</h3><p>Die fertigen Icons in einem Inventar-Mockup: Lesbarkeit in kleiner Slot-Größe, Seltenheit über die Rahmenfarbe. Slots anklicken für Details.</p></div>
+    <div class="inv" data-inv>
+      <div class="inv-grid" role="listbox" aria-label="Inventar">
+        <button class="inv-slot" role="option" data-name="Perle" data-rar="Selten" data-col="#5CC2B8" data-ink="#0B2E2B" data-count="5" data-img="assets/iconset/web/perle_final.png" style="--rar:#5CC2B8"><img src="assets/iconset/web/perle_final.png" alt="Perle"><span>5</span></button>
+        <button class="inv-slot" role="option" data-name="Seestern" data-rar="Gewöhnlich" data-col="#2A8A96" data-ink="#FFFFFF" data-count="7" data-img="assets/iconset/web/stern_final.png" style="--rar:#2A8A96"><img src="assets/iconset/web/stern_final.png" alt="Seestern"><span>7</span></button>
+        <button class="inv-slot" role="option" data-name="Koralle" data-rar="Gewöhnlich" data-col="#2A8A96" data-ink="#FFFFFF" data-count="12" data-img="assets/iconset/web/koralle_final.png" style="--rar:#2A8A96"><img src="assets/iconset/web/koralle_final.png" alt="Koralle"><span>12</span></button>
+        <div class="inv-slot empty"></div><div class="inv-slot empty"></div><div class="inv-slot empty"></div>
+        <div class="inv-slot empty"></div><div class="inv-slot empty"></div><div class="inv-slot empty"></div>
+        <div class="inv-slot empty"></div><div class="inv-slot empty"></div><div class="inv-slot empty"></div>
+      </div>
+      <div class="inv-detail" aria-live="polite">
+        <div class="inv-big"><img alt=""></div>
+        <h4></h4>
+        <span class="inv-rar"></span>
+        <p>Anzahl <strong class="inv-count"></strong></p>
+        <div class="inv-actions"><button type="button" class="btn-gold">Benutzen</button><button type="button" class="btn-line">Ablegen</button></div>
+      </div>
     </div>
   </section>
 </div>
 </article>
-<!-- ============ 02 PIXEL ART ============ -->
+<!-- ============ 02 CHARACTER DESIGN & ILLUSTRATION ============ -->
+<article class="project" id="character">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">02 · Character Design &amp; Illustration</p>
+      <h2>Character Design &amp; Illustration</h2>
+      <p class="lead">Eine Unterwasser-Kriegerin, passend zur Welt des maritimen Iconsets: blaue Haut, Flossen statt Ohren, Muschel-Gürtel und goldene Stiefel. Der Charakter entsteht in drei Schritten – Lineart, Base Color und Shading. Eine Illustration mit ihr folgt.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Character Design</dd></div>
+      <div><dt>Software</dt><dd>Procreate</dd></div>
+      <div><dt>Status</dt><dd>Illustration folgt</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover" style="background:#B2B2B2"><img src="assets/character/char_preview.jpg" alt="Unterwasser-Kriegerin in drei Stufen: Lineart, Base Color und Shading" data-cap="Character Design – Lineart, Base Color, Shading"></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Lineart &amp; Base Color</h3><p>Saubere Lineart als Grundlage, danach flache Grundfarben: Kontrast zwischen kühler blauer Haut, lavendelfarbenem Stoff und warmem Gold als Akzent.</p></div>
+    <div class="grid c2 keep">
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/char_lineart.jpg" alt="Charakter, Lineart" data-cap="Lineart" style="object-fit:contain"></div><figcaption>Lineart</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/char_base.jpg" alt="Charakter, Base Color" data-cap="Base Color" style="object-fit:contain"></div><figcaption>Base Color</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Base Color → Shading</h3><p>Licht von links oben, Schatten in Blau- und Violetttönen statt in Grau. Die Stofffalten und das Metall der Stiefel bekommen Volumen. Zum Vergleichen den Regler ziehen.</p></div>
+    <figure>
+      <div class="compare" style="--ar:3/4;background:#B2B2B2;max-width:600px;margin-inline:auto">
+        <img src="assets/character/char_base.jpg" alt="Charakter, Base Color">
+        <img class="top" src="assets/character/char_shaded.jpg" alt="Charakter, schattiert">
+        <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
+        <input type="range" value="50" aria-label="Vergleich Charakter: Shading und Base Color">
+      </div>
+      <figcaption>Base Color und Shading im Vergleich</figcaption>
+    </figure>
+  </section>
+</div>
+</article>
+<!-- ============ 03 PIXEL ART ============ -->
 <article class="project" id="pixelart">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">02 · Pixel Art</p>
+      <p class="kicker">03 · Pixel Art</p>
       <h2>Pixel-Art-Set</h2>
       <p class="lead">Ein Set aus acht Item-Sprites im 32×32-Raster: Fliegenpilz, Orange, Fisch, Potion, Schnecke, Schwert, Laterne und Schrein – mit begrenzter Palette, klarer Silhouette und Lichtkante, damit jedes Sprite auch in Originalgröße sofort lesbar ist.</p>
     </div>
@@ -355,12 +496,168 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 </div>
 </article>
-<!-- ============ 03 NINTENDO SWITCH ============ -->
+<!-- ============ 04 KÖRPERSTUDIEN ============ -->
+<article class="project" id="koerper">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">04 · Skizzen · Pose &amp; Bewegung</p>
+      <h2>Körperskizzen</h2>
+      <p class="lead">Schnelle Ganzkörperskizzen zu Proportionen, Gewichtsverteilung und Bewegung – von der Tänzerin bis zur gedrungenen Kreatur. Jede Pose beginnt als schneller Rough Sketch und endet als saubere Lineart – im Fokus stehen Anatomie und die Linie der Bewegung.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Skizzen (Figur &amp; Pose)</dd></div>
+      <div><dt>Software</dt><dd>Procreate</dd></div>
+      <div><dt>Umfang</dt><dd>5 Posen · Lineart</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover" style="background:#E8DFD3"><img src="assets/figur/body_preview.jpg" alt="Übersicht der fünf Posen als Lineart" data-cap="Körperskizzen – Übersicht"></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Posen</h3><p>Vier Figuren in unterschiedlicher Spannung: ein dynamischer Sprung, eine Tänzerin auf Spitze, eine Rückenansicht mit Schwert und eine sitzende Figur mit verschränkten Armen hinter dem Kopf.</p></div>
+    <div class="grid c2 keep">
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#E8DFD3"><img src="assets/figur/figur1_line.jpg" alt="Springende Figur, Lineart" data-cap="Sprung" style="object-fit:contain"></div><figcaption>Sprung</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#E8DFD3"><img src="assets/figur/figur2_line.jpg" alt="Tänzerin, Lineart" data-cap="Tänzerin" style="object-fit:contain"></div><figcaption>Tänzerin</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#E8DFD3"><img src="assets/figur/figur3_line.jpg" alt="Rückenansicht mit Schwert, Lineart" data-cap="Rückenansicht mit Schwert" style="object-fit:contain"></div><figcaption>Rückenansicht mit Schwert</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#E8DFD3"><img src="assets/figur/figur4_line.jpg" alt="Sitzende Figur, Lineart" data-cap="Sitzende Figur" style="object-fit:contain"></div><figcaption>Sitzende Figur</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Kreatur</h3><p>Ein Gegenpol zu den schlanken Figuren: schwere, gedrungene Masse mit tiefem Schwerpunkt, Hörnerhelm und Axt über der Schulter. Hier geht es um Gewicht und Volumen statt um Streckung.</p></div>
+    <figure><div class="tile" style="aspect-ratio:4/3;background:#E8DFD3"><img src="assets/figur/figur5_line.jpg" alt="Gedrungene Kreatur mit Hörnerhelm und Axt, Lineart" data-cap="Kreatur mit Axt" style="object-fit:contain"></div><figcaption>Kreatur mit Axt</figcaption></figure>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Rough Sketch → Lineart</h3><p>Im Rough Sketch entstehen Bewegung und Proportionen, in der Lineart werden Formen geklärt und Fehler korrigiert. Zum Vergleichen den Regler ziehen.</p></div>
+    <div>
+    <div class="grid c2 keep">
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#E8DFD3">
+          <img src="assets/figur/figur1.jpg" alt="Sprung, Rough Sketch">
+          <img class="top" src="assets/figur/figur1_line.jpg" alt="Sprung, Lineart">
+          <span class="lbl l">Lineart</span><span class="lbl r">Rough</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Sprung: Lineart und Rough Sketch">
+        </div>
+        <figcaption>Sprung – Rough Sketch und Lineart</figcaption>
+      </figure>
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#E8DFD3">
+          <img src="assets/figur/figur2.jpg" alt="Tänzerin, Rough Sketch">
+          <img class="top" src="assets/figur/figur2_line.jpg" alt="Tänzerin, Lineart">
+          <span class="lbl l">Lineart</span><span class="lbl r">Rough</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Tänzerin: Lineart und Rough Sketch">
+        </div>
+        <figcaption>Tänzerin – Rough Sketch und Lineart</figcaption>
+      </figure>
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#E8DFD3">
+          <img src="assets/figur/figur3.jpg" alt="Rückenansicht mit Schwert, Rough Sketch">
+          <img class="top" src="assets/figur/figur3_line.jpg" alt="Rückenansicht mit Schwert, Lineart">
+          <span class="lbl l">Lineart</span><span class="lbl r">Rough</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Rückenansicht mit Schwert: Lineart und Rough Sketch">
+        </div>
+        <figcaption>Rückenansicht mit Schwert – Rough Sketch und Lineart</figcaption>
+      </figure>
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#E8DFD3">
+          <img src="assets/figur/figur4.jpg" alt="Sitzende Figur, Rough Sketch">
+          <img class="top" src="assets/figur/figur4_line.jpg" alt="Sitzende Figur, Lineart">
+          <span class="lbl l">Lineart</span><span class="lbl r">Rough</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Sitzende Figur: Lineart und Rough Sketch">
+        </div>
+        <figcaption>Sitzende Figur – Rough Sketch und Lineart</figcaption>
+      </figure>
+    </div>
+    <div style="margin-top:16px">
+      <figure>
+        <div class="compare" style="--ar:4/3;background:#E8DFD3">
+          <img src="assets/figur/figur5.jpg" alt="Kreatur mit Axt, Rough Sketch" style="object-fit:contain">
+          <img class="top" src="assets/figur/figur5_line.jpg" alt="Kreatur mit Axt, Lineart" style="object-fit:contain">
+          <span class="lbl l">Lineart</span><span class="lbl r">Rough</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Kreatur mit Axt: Lineart und Rough Sketch">
+        </div>
+        <figcaption>Kreatur mit Axt – Rough Sketch und Lineart</figcaption>
+      </figure>
+    </div>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 04</span><h3>Zeitraffer</h3><p>Die Tänzerin im Zeitraffer: zuerst die Bewegungslinie und lockere Formen im Rough Sketch, danach die klare, saubere Linie. Zwölffach beschleunigt.</p></div>
+    <figure><video src="assets/figur/dancer_timelapse.mp4" poster="assets/figur/dancer_poster.jpg" style="width:100%;border-radius:16px;border:1px solid var(--line)" autoplay muted loop playsinline controls preload="metadata"></video><figcaption>Tänzerin – Entstehung in Procreate (12× Geschwindigkeit)</figcaption></figure>
+  </section>
+</div>
+</article>
+
+<!-- ============ 05 PORTRAITSTUDIEN ============ -->
+<article class="project" id="portrait">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">05 · Skizzen · Gesicht &amp; Ausdruck</p>
+      <h2>Portraitskizzen</h2>
+      <p class="lead">Schnelle Portraitskizzen zu Proportionen, Kopfdrehung und Ausdruck. Linien und Shading sind bewusst schnell und rough gehalten – im Fokus steht die Konstruktion des Kopfes, nicht ein ausgearbeitetes Rendering.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Skizzen (Portrait)</dd></div>
+      <div><dt>Software</dt><dd>Procreate</dd></div>
+      <div><dt>Umfang</dt><dd>6 Portraits · 1 Zeitraffer</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover" style="background:#E8DFD3"><img src="assets/figur/portrait_preview.jpg" alt="Übersicht der Portraitstudien" data-cap="Portraitskizzen – Übersicht"></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Gesichter</h3><p>Schnelle Linienstudien in verschiedenen Kopfhaltungen – frontal, im Dreiviertelprofil, im Profil und von unten. Achsen und Hilfslinien bleiben sichtbar.</p></div>
+    <div class="grid">
+      <figure><div class="tile" style="aspect-ratio:4/3;background:#C0C0C0"><img src="assets/figur/sketch1.jpg" alt="Linienskizze, Studie 1" data-cap="Studie 1 – Linienskizze"></div><figcaption>Studie 1</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:4/3;background:#C0C0C0"><img src="assets/figur/sketch2.jpg" alt="Linienskizze, Studie 2" data-cap="Studie 2 – Linienskizze"></div><figcaption>Studie 2</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:4/3;background:#C0C0C0"><img src="assets/figur/sketch3.jpg" alt="Linienskizze, Studie 3" data-cap="Studie 3 – Linienskizze"></div><figcaption>Studie 3</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:4/3;background:#C0C0C0"><img src="assets/figur/sketch4.jpg" alt="Linienskizze, Studie 4" data-cap="Studie 4 – Linienskizze"></div><figcaption>Studie 4</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:4/3;background:#C0C0C0"><img src="assets/figur/sketch5.jpg" alt="Linienskizze, Studie 5" data-cap="Studie 5 – Linienskizze"></div><figcaption>Studie 5</figcaption></figure>
+      <figure><div class="tile" style="aspect-ratio:4/3;background:#C0C0C0"><img src="assets/figur/sketch6.jpg" alt="Linienskizze, Studie 6" data-cap="Studie 6 – Linienskizze"></div><figcaption>Studie 6</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Portrait im Zeitraffer</h3><p>Vom Kopf-Umriss über Gesichtsachsen, Augen und Mund bis zu Haaren und Linien-Feinschliff. Zwölffach beschleunigt.</p></div>
+    <figure><video src="assets/figur/portrait_timelapse.mp4" poster="assets/figur/portrait_poster.jpg" style="width:100%;border-radius:16px;border:1px solid var(--line)" autoplay muted loop playsinline controls preload="metadata"></video><figcaption>Portrait – Entstehung in Procreate (12× Geschwindigkeit)</figcaption></figure>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Base Color → Shading</h3><p>Zwei der Portraits flächig koloriert und anschließend schnell schattiert: wenige Werte, weiche Übergänge auf Haut und Hals, etwas Volumen im Haar. Genug, um Form und Kopfdrehung zu lesen. Zum Vergleichen den Regler ziehen.</p></div>
+    <div class="grid c2">
+      <figure>
+        <div class="compare" style="--ar:4/3;background:#C0C0C0">
+          <img src="assets/figur/sketch1base.jpg" alt="Studie 1, Base Color">
+          <img class="top" src="assets/figur/sketch1shaded.jpg" alt="Studie 1, schattiert">
+          <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Studie 1: Shading und Base Color">
+        </div>
+        <figcaption>Studie 1 – Base Color und Shading</figcaption>
+      </figure>
+      <figure>
+        <div class="compare" style="--ar:4/3;background:#C0C0C0">
+          <img src="assets/figur/sketch2base.jpg" alt="Studie 2, Base Color">
+          <img class="top" src="assets/figur/sketch2shaded.jpg" alt="Studie 2, schattiert">
+          <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Studie 2: Shading und Base Color">
+        </div>
+        <figcaption>Studie 2 – Base Color und Shading</figcaption>
+      </figure>
+    </div>
+  </section>
+</div>
+</article>
+
+<!-- ============ 06 NINTENDO SWITCH ============ -->
 <article class="project" id="nintendo-switch">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">03 · 3D · Hard Surface Modeling</p>
+      <p class="kicker">06 · 3D · Hard Surface Modeling</p>
       <h2>Nintendo Switch</h2>
       <p class="lead">Ein Hard-Surface-Modell der Nintendo Switch nach Fotoreferenzen. Details wie Tasten, Lüftungsschlitze und Joy-Con-Schienen sind mit Boolean Cuts umgesetzt.</p>
     </div>
@@ -375,16 +672,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   <div class="cover"><img src="assets/nintendo-switch/Nintendo_Switch_final_render.jpg" alt="Nintendo Switch, finaler Render" data-cap="Nintendo Switch – finaler Render"></div>
 
   <section class="step">
-    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Referenzen</h3><p>Orthografische Ansichten und Detailfotos als Grundlage für Proportionen und Details.</p></div>
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Referenzen</h3><p>Ansichten von vorne, hinten, oben und von der Seite als Grundlage für Proportionen und Details.</p></div>
     <div class="grid c4">
       <figure><div class="tile sq"><img src="assets/nintendo-switch/references/front_nintendo_cut.jpg" alt="Front" data-cap="Front"></div><figcaption>Front</figcaption></figure>
       <figure><div class="tile sq"><img src="assets/nintendo-switch/references/back.jpg" alt="Rückseite" data-cap="Rückseite"></div><figcaption>Rückseite</figcaption></figure>
       <figure><div class="tile sq"><img src="assets/nintendo-switch/references/top_nintendo_cut.jpg" alt="Oberseite" data-cap="Oberseite"></div><figcaption>Oberseite</figcaption></figure>
       <figure><div class="tile sq"><img src="assets/nintendo-switch/references/side_nintendo_cut.jpg" alt="Seite" data-cap="Seite"></div><figcaption>Seite</figcaption></figure>
-      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/controllerback.jpg" alt="Controller, Rückseite" data-cap="Controller, Rückseite"></div><figcaption>Controller hinten</figcaption></figure>
-      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/controllerside1.jpg" alt="Controller, Seite 1" data-cap="Controller, Seite 1"></div><figcaption>Controller Seite 1</figcaption></figure>
-      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/controllerside2.jpg" alt="Controller, Seite 2" data-cap="Controller, Seite 2"></div><figcaption>Controller Seite 2</figcaption></figure>
-      <figure><div class="tile sq"><img src="assets/nintendo-switch/references/displaynintendo.jpg" alt="Display" data-cap="Display"></div><figcaption>Display</figcaption></figure>
     </div>
   </section>
 
@@ -410,12 +703,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 </div>
 </article>
-<!-- ============ 04 RAMEN WORLD ============ -->
+<!-- ============ 07 RAMEN WORLD ============ -->
 <article class="project" id="ramen-world">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">04 · 3D · Environment</p>
+      <p class="kicker">07 · 3D · Environment</p>
       <h2>Ramen World</h2>
       <p class="lead">Eine kleine, stilisierte japanische Welt rund um einen Ramen-Shop – mit Schrein, Teich und Laternen. Alle Assets wurden einzeln modelliert und anschließend zu einer Szene zusammengesetzt.</p>
     </div>
@@ -448,11 +741,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
       <figure><div class="compare"><img src="assets/ramen-world/render_ramen_clay.jpg" alt="Ramen-Schale, Clay"><img class="top" src="assets/ramen-world/render_ramen.jpg" alt="Ramen-Schale, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Ramen-Schale"></div><figcaption>Ramen-Schale</figcaption></figure>
       <figure><div class="compare"><img src="assets/ramen-world/render_lantern_clay.jpg" alt="Laterne, Clay"><img class="top" src="assets/ramen-world/render_lantern.jpg" alt="Laterne, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Laterne"></div><figcaption>Laterne</figcaption></figure>
       <figure><div class="compare"><img src="assets/ramen-world/render_shrine_clay.jpg" alt="Schrein, Clay"><img class="top" src="assets/ramen-world/render_shrine.jpg" alt="Schrein, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Schrein"></div><figcaption>Schrein</figcaption></figure>
-      <figure><div class="compare"><img src="assets/ramen-world/render_shrine_side_clay.jpg" alt="Schrein seitlich, Clay"><img class="top" src="assets/ramen-world/render_shrine_side.jpg" alt="Schrein seitlich, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Schrein Seitenansicht"></div><figcaption>Schrein – Seitenansicht</figcaption></figure>
       <figure><div class="compare"><img src="assets/ramen-world/render_pond_clay.jpg" alt="Teich, Clay"><img class="top" src="assets/ramen-world/render_pond.jpg" alt="Teich, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Teich"></div><figcaption>Teich</figcaption></figure>
-      <figure><div class="compare"><img src="assets/ramen-world/render_flower_clay.jpg" alt="Blume, Clay"><img class="top" src="assets/ramen-world/render_flower.jpg" alt="Blume, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Blume"></div><figcaption>Blume</figcaption></figure>
-      <figure><div class="compare"><img src="assets/ramen-world/render_flower1_clay.jpg" alt="Blume Variante, Clay"><img class="top" src="assets/ramen-world/render_flower1.jpg" alt="Blume Variante, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Blume Variante"></div><figcaption>Blume – Variante</figcaption></figure>
-      <figure><div class="compare"><img src="assets/ramen-world/render_grass_clay.jpg" alt="Gras, Clay"><img class="top" src="assets/ramen-world/render_grass.jpg" alt="Gras, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Gras"></div><figcaption>Gras</figcaption></figure>
     </div>
   </section>
 
@@ -468,12 +757,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 
 </div>
 </article>
-<!-- ============ 05 WASSERFALL ============ -->
+<!-- ============ 08 WASSERFALL ============ -->
 <article class="project" id="wasserfall">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">05 · 3D · Animation</p>
+      <p class="kicker">08 · 3D · Animation</p>
       <h2>Wasserfall</h2>
       <p class="lead">Eine animierte Wasserfall-Szene, umgesetzt mit Grease Pencil in Blender – gezeichnete 2D-Linien und -Flächen direkt im 3D-Raum.</p>
     </div>
@@ -495,12 +784,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 </div>
 </article>
 
-<!-- ============ 06 EINZELARBEITEN ============ -->
+<!-- ============ 09 EINZELARBEITEN ============ -->
 <article class="project" id="einzelarbeiten">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">06 · 3D</p>
+      <p class="kicker">09 · 3D</p>
       <h2>3D-Einzelarbeiten</h2>
       <p class="lead">Kleinere Modelling-Studien: ein stilisierter Brunnen, ein isometrisches Badezimmer-Diorama und ein Tisch mit gesteckten Holzverbindungen.</p>
     </div>
@@ -531,6 +820,28 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
       <figure><div class="compare" style="--ar:16/9"><img src="assets/3d-einzeln/rendered4.jpg" alt="Tisch, Clay"><img class="top" src="assets/3d-einzeln/rendered3.jpg" alt="Tisch, Render"><span class="lbl l">Render</span><span class="lbl r">Clay</span><span class="bar"></span><input type="range" value="50" aria-label="Vergleich Tisch Ansicht 2"></div><figcaption>Ansicht 2</figcaption></figure>
     </div>
   </section>
+</div>
+</article>
+<!-- ============ 10 MALEREI ============ -->
+<article class="project" id="malerei">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">10 · Malerei</p>
+      <h2>Malerei</h2>
+      <p class="lead">Gemalte Arbeiten abseits des Bildschirms – Studien zu Farbe, Licht und Material sowie zwei surreale Motive mit eigener Bildwelt.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Traditionelle Malerei</dd></div>
+      <div><dt>Umfang</dt><dd>4 Bilder</dd></div>
+    </dl>
+  </div>
+  <div class="art-grid">
+    <figure><div class="tile art"><img src="assets/kunst/web/surreal1.jpg" alt="Surreales Gemälde: Wolkengesicht über dem Meer, eine Waffel mit schmelzendem Eis, Papierboote und eine Leiter in den Himmel" data-cap="Surreal I"></div><figcaption>Surreal I</figcaption></figure>
+    <figure><div class="tile art"><img src="assets/kunst/web/surreal2.jpg" alt="Surreales Gemälde: Gesicht als Uhr, umgeben von Ranken, Blüten und einer Treppe" data-cap="Surreal II"></div><figcaption>Surreal II</figcaption></figure>
+    <figure><div class="tile art"><img src="assets/kunst/web/pfirsich.jpg" alt="Gemälde: drei Pfirsiche mit Blättern, einer aufgeschnitten" data-cap="Pfirsiche"></div><figcaption>Pfirsiche</figcaption></figure>
+    <figure><div class="tile art"><img src="assets/kunst/web/sushi1.jpg" alt="Gemälde: Sushi auf Tellern von oben" data-cap="Sushi"></div><figcaption>Sushi</figcaption></figure>
+  </div>
 </div>
 </article>
 </main>
@@ -569,7 +880,22 @@ document.querySelectorAll('.carousel').forEach(c => {
   t.addEventListener('scroll', mark); mark();
 });
 
-const imgs = [...document.querySelectorAll('.tile img, .cover > img, .carousel img')];
+// Inventar-Mockup
+document.querySelectorAll('[data-inv]').forEach(inv => {
+  const slots = [...inv.querySelectorAll('.inv-slot[data-name]')], d = inv.querySelector('.inv-detail');
+  const pick = b => {
+    slots.forEach(x => { x.classList.toggle('sel', x === b); x.setAttribute('aria-selected', x === b); });
+    d.querySelector('.inv-big').style.setProperty('--rar', b.dataset.col);
+    d.querySelector('.inv-big img').src = b.dataset.img; d.querySelector('.inv-big img').alt = b.dataset.name;
+    d.querySelector('h4').textContent = b.dataset.name;
+    const rar = d.querySelector('.inv-rar'); rar.textContent = b.dataset.rar; rar.style.background = b.dataset.col; rar.style.color = b.dataset.ink;
+    d.querySelector('.inv-count').textContent = b.dataset.count;
+  };
+  slots.forEach(b => b.addEventListener('click', () => pick(b)));
+  pick(slots[0]);
+});
+
+const imgs = [...document.querySelectorAll('.tile img, .cover > img, .carousel img, .icon-set img')];
 const lb = document.getElementById('lb'), li = lb.querySelector('img'), cap = lb.querySelector('.cap');
 let cur = 0;
 const show = n => { cur = (n + imgs.length) % imgs.length; li.src = imgs[cur].currentSrc || imgs[cur].src; li.alt = imgs[cur].alt; cap.textContent = imgs[cur].dataset.cap || imgs[cur].alt; };

@@ -3,3 +3,5 @@ portfolio/
 Thumbs.db
 desktop.ini
 .DS_Store
+# Rohmaterial, nur lokal (zu gross fuer GitHub)
+assets/face illustration/
