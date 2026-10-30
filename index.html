@@ -37,9 +37,10 @@ a{color:inherit}
 
 /* Übersicht / Inhaltsverzeichnis */
 .overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding-bottom:clamp(80px,10vw,140px)}
-.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)Den Fisch bitte als Vorschau. In den Cards;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s}
 .card:hover{transform:translateY(-4px);border-color:var(--accent)}
-.card .thumb{aspect-ratio:4/3;background:var(--surface-2);overflow:hidden}
+.card .thumb{aspect-ratio:4/3;background:var(--surface-2);overflow:hidden;position:relative}
+.card .thumb-badge{position:absolute;right:12px;bottom:12px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(14,23,38,.75);color:var(--text)}
 .card .thumb img,.card .thumb video{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .card .thumb.contain img{object-fit:contain;padding:3%}
 .card:hover .thumb img,.card:hover .thumb video{transform:scale(1.04)}
@@ -89,6 +90,13 @@ figcaption{font-size:14px;color:var(--muted);padding-top:10px}
 .compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
 .compare .lbl{position:absolute;top:12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(14,23,38,.7);padding:5px 10px;border-radius:999px;pointer-events:none}
 .compare .lbl.l{left:12px}.compare .lbl.r{right:12px}
+.compare .zoom{position:absolute;right:12px;bottom:12px;z-index:2;width:38px;height:38px;border:0;border-radius:50%;background:rgba(14,23,38,.7);color:#fff;display:grid;place-items:center;cursor:zoom-in;padding:0}
+.compare .zoom:hover{background:var(--accent);color:var(--accent-ink)}
+#cb{position:fixed;inset:0;z-index:50;background:rgba(6,11,20,.95);display:none;align-items:center;justify-content:center;padding:56px 72px}
+#cb.open{display:flex}
+#cb .compare{width:min(100%,calc((100vh - 112px) * (var(--ar,16/10))));max-width:none!important;margin:0!important;border:0}
+#cb .x{position:absolute;top:16px;right:16px;background:var(--surface-2);color:var(--text);border:0;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer}
+#cb .x:hover{background:var(--accent);color:var(--accent-ink)}
 
 .swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .swatches span{width:36px;height:36px;border-radius:50%;border:1px solid var(--line)}
@@ -118,6 +126,9 @@ figcaption{font-size:14px;color:var(--muted);padding-top:10px}
 @keyframes swim{0%{background-position:0 0}25%{background-position:33.333% 0}50%{background-position:66.667% 0}75%{background-position:100% 0}}
 .card .thumb .sprite{width:78%;margin:auto}
 .card .thumb:has(.sprite){display:flex;align-items:center}
+.card .thumb.tgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));place-items:center;gap:1%;padding:3% 3%}
+.card .thumb.tgrid img,.card .thumb.tgrid .sprite{width:100%;height:auto;aspect-ratio:1;object-fit:contain;margin:0;padding:0}
+.card .thumb.tgrid.pixset{padding:10% 8%;gap:6%}
 .anim-stage{display:grid;place-items:center;border-radius:16px;border:1px solid var(--line);padding:clamp(16px,4vw,40px)}
 .anim-stage .sprite{width:min(100%,512px)}
 .frames{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
@@ -126,6 +137,8 @@ figcaption{font-size:14px;color:var(--muted);padding-top:10px}
 @media (prefers-reduced-motion:reduce){.sprite{animation:none}}
 .card-ph .thumb{display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--surface-2) 0 14px,var(--surface) 14px 28px)}
 .ph-label{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:6px 14px;background:var(--surface)}
+.ph-box{aspect-ratio:4/3;display:grid;place-items:center;border:2px dashed var(--line);border-radius:16px}
+.card .thumb.ph-thumb{display:grid;place-items:center;background:transparent;border-bottom:2px dashed var(--line)}
 .cover.ph{aspect-ratio:16/7;display:grid;place-items:center;border:2px dashed var(--line);background:transparent}
 .card-ext{border-style:dashed;background:transparent}
 .card-ext .thumb{display:grid;place-items:center;background:linear-gradient(135deg,var(--surface-2),var(--surface))}
@@ -194,7 +207,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   .grid.c2:not(.keep){--cols:1}
   .span2{grid-column:auto}
   .topbar .brand{display:none}
-  #lb{padding:56px 8px}
+  #lb,#cb{padding:56px 8px}
   #lb .prev,#lb .next{top:auto;bottom:8px;margin:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -206,8 +219,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   <div class="wrap">
     <a class="brand" href="#top">Sophia Lattermann</a>
     <nav aria-label="Projekte">
-      <a href="#iconset">Illustrated Icons</a>
+      <a href="#illustration">Illustration</a>
       <a href="#character">Character</a>
+      <a href="#iconset">Icons</a>
       <a href="#pixelart">Pixel Art</a>
       <a href="#koerper">Körper</a>
       <a href="#portrait">Portrait</a>
@@ -227,45 +241,49 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 
   <!-- Inhaltsverzeichnis -->
   <nav class="overview" aria-label="Inhaltsverzeichnis">
-    <a class="card" href="#iconset">
-      <div class="thumb contain icon-bg"><img src="assets/iconset/web/card_three.png" alt="" style="padding:2%"></div>
-      <div class="body"><span class="num">01</span><h3>Maritimes Iconset</h3><span class="tags">Illustrated Icons · Procreate</span></div>
+    <a class="card" href="#illustration">
+      <div class="thumb ph-thumb"><span class="ph-label">In Arbeit</span></div>
+      <div class="body"><span class="num">01</span><h3>Illustration</h3><span class="tags">Illustration · Procreate</span></div>
     </a>
     <a class="card" href="#character">
       <div class="thumb" style="background:#B2B2B2"><img src="assets/character/char_card.jpg" alt=""></div>
-      <div class="body"><span class="num">02</span><h3>Character Design &amp; Illustration</h3><span class="tags">Character Design · Procreate</span></div>
+      <div class="body"><span class="num">02</span><h3>Character Design</h3><span class="tags">Character Design · Procreate</span></div>
+    </a>
+    <a class="card" href="#iconset">
+      <div class="thumb icon-bg tgrid"><img src="assets/iconset/web/perle_final.png" alt=""><img src="assets/iconset/web/stern_final.png" alt=""><img src="assets/iconset/web/koralle_final.png" alt=""><img src="assets/iconset/web/dreizack_base.png" alt=""><img src="assets/iconset/web/potion_base.png" alt=""><img src="assets/iconset/web/schwert_base.png" alt=""><img src="assets/iconset/web/seedrache_base.png" alt=""><img src="assets/iconset/web/muschel_base.png" alt=""><span class="thumb-badge">In Arbeit</span></div>
+      <div class="body"><span class="num">03</span><h3>Maritimes Iconset</h3><span class="tags">Illustrated Icons · Procreate</span></div>
     </a>
     <a class="card" href="#pixelart">
-      <div class="thumb contain pix-bg"><div class="sprite" role="img" aria-label="Animierter Pixel-Art-Fisch"></div></div>
-      <div class="body"><span class="num">03</span><h3>Pixel-Art-Set</h3><span class="tags">Pixel Art · Sprites · LibreSprite</span></div>
+      <div class="thumb pix-bg tgrid pixset"><img class="pixel" src="assets/pixelart/mushroom.png" alt=""><img class="pixel" src="assets/pixelart/orange.png" alt=""><div class="sprite" role="img" aria-label="Animierter Pixel-Art-Fisch"></div><img class="pixel" src="assets/pixelart/potion.png" alt=""><img class="pixel" src="assets/pixelart/snail.png" alt=""><img class="pixel" src="assets/pixelart/sword.png" alt=""><img class="pixel" src="assets/pixelart/lantern.png" alt=""><img class="pixel" src="assets/pixelart/shrine.png" alt=""></div>
+      <div class="body"><span class="num">04</span><h3>Pixel-Art-Set</h3><span class="tags">Pixel Art · Sprites · LibreSprite</span></div>
     </a>
     <a class="card" href="#koerper">
       <div class="thumb" style="background:#E8DFD3"><img src="assets/figur/body_card.jpg" alt=""></div>
-      <div class="body"><span class="num">04</span><h3>Körperskizzen</h3><span class="tags">Skizzen · Pose &amp; Bewegung</span></div>
+      <div class="body"><span class="num">05</span><h3>Körperskizzen</h3><span class="tags">Skizzen · Pose &amp; Bewegung</span></div>
     </a>
     <a class="card" href="#portrait">
       <div class="thumb" style="background:#E8DFD3"><img src="assets/figur/portrait_card.jpg" alt=""></div>
-      <div class="body"><span class="num">05</span><h3>Portraitskizzen</h3><span class="tags">Skizzen · Gesicht &amp; Ausdruck</span></div>
+      <div class="body"><span class="num">06</span><h3>Portraitskizzen</h3><span class="tags">Skizzen · Gesicht &amp; Ausdruck</span></div>
     </a>
     <a class="card" href="#nintendo-switch">
       <div class="thumb"><img src="assets/nintendo-switch/Nintendo_Switch_final_render.jpg" alt=""></div>
-      <div class="body"><span class="num">06</span><h3>Nintendo Switch</h3><span class="tags">3D · Hard Surface Modeling · 3ds Max</span></div>
+      <div class="body"><span class="num">07</span><h3>Nintendo Switch</h3><span class="tags">3D · Hard Surface Modeling · 3ds Max</span></div>
     </a>
     <a class="card" href="#ramen-world">
       <div class="thumb"><img src="assets/ramen-world/render_ramenshop_close.jpg" alt=""></div>
-      <div class="body"><span class="num">07</span><h3>Ramen World</h3><span class="tags">3D · Environment · Blender</span></div>
+      <div class="body"><span class="num">08</span><h3>Ramen World</h3><span class="tags">3D · Environment · Blender</span></div>
     </a>
     <a class="card" href="#wasserfall">
-      <div class="thumb"><img src="assets/ramen-world/waterfall_render_front.jpg" alt=""></div>
-      <div class="body"><span class="num">08</span><h3>Wasserfall</h3><span class="tags">3D · Grease Pencil · Blender</span></div>
+      <div class="thumb"><img src="assets/ramen-world/waterfall_render_front.jpg" alt="" style="scale:1.5;transform-origin:50% 35%"></div>
+      <div class="body"><span class="num">09</span><h3>Wasserfall</h3><span class="tags">3D · Grease Pencil · Blender</span></div>
     </a>
     <a class="card" href="#einzelarbeiten">
       <div class="thumb"><img src="assets/3d-einzeln/untitled.jpg" alt=""></div>
-      <div class="body"><span class="num">09</span><h3>3D-Einzelarbeiten</h3><span class="tags">3D · Props &amp; Diorama · Blender</span></div>
+      <div class="body"><span class="num">10</span><h3>3D-Einzelarbeiten</h3><span class="tags">3D · Props &amp; Diorama · Blender</span></div>
     </a>
     <a class="card" href="#malerei">
       <div class="thumb"><img src="assets/kunst/web/surreal2.jpg" alt="" style="object-position:center 30%"></div>
-      <div class="body"><span class="num">10</span><h3>Malerei</h3><span class="tags">Traditionelle Malerei</span></div>
+      <div class="body"><span class="num">11</span><h3>Malerei</h3><span class="tags">Traditionelle Malerei</span></div>
     </a>
     <a class="card card-ext" href="https://sophiafena.github.io/ux/" target="_blank" rel="noopener">
       <div class="thumb"><span class="ext-arrow" aria-hidden="true">↗</span></div>
@@ -275,19 +293,118 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 
 </div>
 
-<!-- ============ 01 ILLUSTRATED ICONS ============ -->
+<!-- ============ 01 ILLUSTRATION ============ -->
+<article class="project" id="illustration">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">01 · Illustration</p>
+      <h2>Illustration <span class="badge muted">In Arbeit</span></h2>
+      <p class="lead">Zwei Illustrationen mit der Unterwasser-Kriegerin aus dem Character Design – sie in ihrer Welt, in Szene gesetzt. Beide sind gerade in Arbeit.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Illustration</dd></div>
+      <div><dt>Software</dt><dd>Procreate</dd></div>
+      <div><dt>Status</dt><dd>In Arbeit</dd></div>
+    </dl>
+  </div>
+
+  <div class="grid c2 keep">
+    <figure><div class="ph-box"><span class="ph-label">Illustration 1 folgt</span></div></figure>
+    <figure><div class="ph-box"><span class="ph-label">Illustration 2 folgt</span></div></figure>
+  </div>
+</div>
+</article>
+<!-- ============ 02 CHARACTER DESIGN ============ -->
+<article class="project" id="character">
+<div class="wrap">
+  <div class="p-head">
+    <div>
+      <p class="kicker">02 · Character Design</p>
+      <h2>Character Design</h2>
+      <p class="lead">Eine Unterwasser-Kriegerin, passend zur Welt des maritimen Iconsets: blaue Haut, Flossen statt Ohren, Muschel-Gürtel und goldene Stiefel. Figur, Gesicht und Dreizack entstehen in drei Schritten – Lineart, Base Color und Shading. Zwei Illustrationen mit ihr sind in Arbeit.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Typ</dt><dd>Character Design</dd></div>
+      <div><dt>Software</dt><dd>Procreate</dd></div>
+      <div><dt>Status</dt><dd>Figur, Gesicht, Dreizack</dd></div>
+    </dl>
+  </div>
+
+  <div class="cover" style="background:#B2B2B2"><img src="assets/character/char_preview.jpg" alt="Unterwasser-Kriegerin: Dreizack, Figur und Gesicht, fertig schattiert" data-cap="Character Design – Dreizack, Figur und Gesicht"></div>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Skizzen</h3><p>Erste Skizzen zu Gesicht, Figur, Schwanzflosse und Dreizack. Hier werden Proportionen, Flossenformen und die Silhouette der Waffe festgelegt.</p></div>
+    <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2;max-width:600px;margin-inline:auto"><img src="assets/character/char_sketch.jpg" alt="Skizzenblatt: Gesicht, Figur, Schwanzflosse und Dreizack" data-cap="Skizzen vor der Lineart" style="object-fit:contain"></div><figcaption style="text-align:center">Skizzen vor der Lineart</figcaption></figure>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Skizze → Lineart</h3><p>Auf der roten Skizze entsteht die saubere Lineart – hier exemplarisch am Dreizack im Zeitraffer. Die Flossen-Zacken der Waffe greifen die Formensprache der Ohren auf.</p></div>
+    <figure><video src="assets/character/trident_lineart_timelapse.mp4" poster="assets/character/trident_lineart_poster.jpg" style="width:100%;border-radius:16px;border:1px solid var(--line)" autoplay muted loop playsinline controls preload="metadata"></video><figcaption>Dreizack – Lineart in Procreate (8× Geschwindigkeit)</figcaption></figure>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Figur: Lineart, Base Color, Shading</h3><p>Saubere Lineart als Grundlage, danach flache Grundfarben: kühle blaue Haut, lavendelfarbener Stoff und warmes Gold als Akzent. Beim Shading kommt Licht von links oben, die Schatten liegen in Blau- und Violetttönen statt in Grau. Zum Vergleichen den Regler ziehen.</p></div>
+    <div class="grid c2 keep">
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/char_lineart.jpg" alt="Figur, Lineart" data-cap="Figur – Lineart" style="object-fit:contain"></div><figcaption>Lineart</figcaption></figure>
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#B2B2B2">
+          <img src="assets/character/char_base.jpg" alt="Figur, Base Color">
+          <img class="top" src="assets/character/char_shaded.jpg" alt="Figur, schattiert">
+          <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Figur: Shading und Base Color">
+        </div>
+        <figcaption>Base Color und Shading im Vergleich</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 04</span><h3>Gesicht</h3><p>Ein Portrait in größerem Maßstab mit denselben drei Schritten. Goldene Augen als Akzent, Schatten in Violett und weiche Lichtkanten an Haaren und Flossen.</p></div>
+    <div class="grid c2 keep">
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/charface_lineart.jpg" alt="Gesicht, Lineart" data-cap="Gesicht – Lineart" style="object-fit:contain"></div><figcaption>Lineart</figcaption></figure>
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#B2B2B2">
+          <img src="assets/character/charface_base.jpg" alt="Gesicht, Base Color">
+          <img class="top" src="assets/character/charface_shaded.jpg" alt="Gesicht, schattiert">
+          <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Gesicht: Shading und Base Color">
+        </div>
+        <figcaption>Base Color und Shading im Vergleich</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-info"><span class="n">SCHRITT 05</span><h3>Dreizack</h3><p>Die Waffe der Kriegerin in denselben drei Schritten: goldener Schaft, Flossen zwischen den Zacken und blaue Juwelen als Akzent.</p></div>
+    <div class="grid c2 keep">
+      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/trident_lineart.jpg" alt="Dreizack, Lineart" data-cap="Dreizack – Lineart" style="object-fit:contain"></div><figcaption>Lineart</figcaption></figure>
+      <figure>
+        <div class="compare" style="--ar:3/4;background:#B2B2B2">
+          <img src="assets/character/trident_base.jpg" alt="Dreizack, Base Color">
+          <img class="top" src="assets/character/trident_shaded.jpg" alt="Dreizack, schattiert">
+          <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
+          <input type="range" value="50" aria-label="Vergleich Dreizack: Shading und Base Color">
+        </div>
+        <figcaption>Base Color und Shading im Vergleich</figcaption>
+      </figure>
+    </div>
+  </section>
+</div>
+</article>
+<!-- ============ 03 ILLUSTRATED ICONS ============ -->
 <article class="project" id="iconset">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">01 · Illustrated Icons</p>
-      <h2>Maritimes Iconset</h2>
+      <p class="kicker">03 · Illustrated Icons</p>
+      <h2>Maritimes Iconset <span class="badge muted">In Arbeit</span></h2>
       <p class="lead">Acht Item-Icons für ein Unterwasser-Game. Ziel war eine einheitliche Formensprache und Farbpalette, die auch in kleinen Inventar-Größen gut lesbar bleibt. Drei Icons sind fertig, die übrigen liegen als Base Color vor.</p>
     </div>
     <dl class="facts">
       <div><dt>Typ</dt><dd>Game Icons</dd></div>
       <div><dt>Software</dt><dd>Procreate</dd></div>
-      <div><dt>Status</dt><dd>8 Items · 3 final</dd></div>
+      <div><dt>Status</dt><dd>In Arbeit · 3 von 8 final</dd></div>
       <div><dt>Jahr</dt><dd>2026</dd></div>
     </dl>
   </div>
@@ -394,52 +511,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 </div>
 </article>
-<!-- ============ 02 CHARACTER DESIGN & ILLUSTRATION ============ -->
-<article class="project" id="character">
-<div class="wrap">
-  <div class="p-head">
-    <div>
-      <p class="kicker">02 · Character Design &amp; Illustration</p>
-      <h2>Character Design &amp; Illustration</h2>
-      <p class="lead">Eine Unterwasser-Kriegerin, passend zur Welt des maritimen Iconsets: blaue Haut, Flossen statt Ohren, Muschel-Gürtel und goldene Stiefel. Der Charakter entsteht in drei Schritten – Lineart, Base Color und Shading. Eine Illustration mit ihr folgt.</p>
-    </div>
-    <dl class="facts">
-      <div><dt>Typ</dt><dd>Character Design</dd></div>
-      <div><dt>Software</dt><dd>Procreate</dd></div>
-      <div><dt>Status</dt><dd>Illustration folgt</dd></div>
-    </dl>
-  </div>
-
-  <div class="cover" style="background:#B2B2B2"><img src="assets/character/char_preview.jpg" alt="Unterwasser-Kriegerin in drei Stufen: Lineart, Base Color und Shading" data-cap="Character Design – Lineart, Base Color, Shading"></div>
-
-  <section class="step">
-    <div class="step-info"><span class="n">SCHRITT 01</span><h3>Lineart &amp; Base Color</h3><p>Saubere Lineart als Grundlage, danach flache Grundfarben: Kontrast zwischen kühler blauer Haut, lavendelfarbenem Stoff und warmem Gold als Akzent.</p></div>
-    <div class="grid c2 keep">
-      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/char_lineart.jpg" alt="Charakter, Lineart" data-cap="Lineart" style="object-fit:contain"></div><figcaption>Lineart</figcaption></figure>
-      <figure><div class="tile" style="aspect-ratio:3/4;background:#B2B2B2"><img src="assets/character/char_base.jpg" alt="Charakter, Base Color" data-cap="Base Color" style="object-fit:contain"></div><figcaption>Base Color</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="step">
-    <div class="step-info"><span class="n">SCHRITT 02</span><h3>Base Color → Shading</h3><p>Licht von links oben, Schatten in Blau- und Violetttönen statt in Grau. Die Stofffalten und das Metall der Stiefel bekommen Volumen. Zum Vergleichen den Regler ziehen.</p></div>
-    <figure>
-      <div class="compare" style="--ar:3/4;background:#B2B2B2;max-width:600px;margin-inline:auto">
-        <img src="assets/character/char_base.jpg" alt="Charakter, Base Color">
-        <img class="top" src="assets/character/char_shaded.jpg" alt="Charakter, schattiert">
-        <span class="lbl l">Shading</span><span class="lbl r">Base</span><span class="bar"></span>
-        <input type="range" value="50" aria-label="Vergleich Charakter: Shading und Base Color">
-      </div>
-      <figcaption>Base Color und Shading im Vergleich</figcaption>
-    </figure>
-  </section>
-</div>
-</article>
-<!-- ============ 03 PIXEL ART ============ -->
+<!-- ============ 04 PIXEL ART ============ -->
 <article class="project" id="pixelart">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">03 · Pixel Art</p>
+      <p class="kicker">04 · Pixel Art</p>
       <h2>Pixel-Art-Set</h2>
       <p class="lead">Ein Set aus acht Item-Sprites im 32×32-Raster: Fliegenpilz, Orange, Fisch, Potion, Schnecke, Schwert, Laterne und Schrein – mit begrenzter Palette, klarer Silhouette und Lichtkante, damit jedes Sprite auch in Originalgröße sofort lesbar ist.</p>
     </div>
@@ -496,12 +573,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 </div>
 </article>
-<!-- ============ 04 KÖRPERSTUDIEN ============ -->
+<!-- ============ 05 KÖRPERSTUDIEN ============ -->
 <article class="project" id="koerper">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">04 · Skizzen · Pose &amp; Bewegung</p>
+      <p class="kicker">05 · Skizzen · Pose &amp; Bewegung</p>
       <h2>Körperskizzen</h2>
       <p class="lead">Schnelle Ganzkörperskizzen zu Proportionen, Gewichtsverteilung und Bewegung – von der Tänzerin bis zur gedrungenen Kreatur. Jede Pose beginnt als schneller Rough Sketch und endet als saubere Lineart – im Fokus stehen Anatomie und die Linie der Bewegung.</p>
     </div>
@@ -530,8 +607,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 
   <section class="step">
-    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Rough Sketch → Lineart</h3><p>Im Rough Sketch entstehen Bewegung und Proportionen, in der Lineart werden Formen geklärt und Fehler korrigiert. Zum Vergleichen den Regler ziehen.</p></div>
+    <div class="step-info"><span class="n">SCHRITT 03</span><h3>Rough Sketch → Lineart</h3><p>Im Rough Sketch entstehen Bewegung und Proportionen, in der Lineart werden Formen geklärt und Fehler korrigiert. Der Zeitraffer zeigt den Ablauf an der Tänzerin, zwölffach beschleunigt. Bei den Figuren darunter den Regler ziehen zum Vergleichen.</p></div>
     <div>
+    <figure style="margin-bottom:16px"><video src="assets/figur/dancer_timelapse.mp4" poster="assets/figur/dancer_poster.jpg" style="width:100%;border-radius:16px;border:1px solid var(--line)" autoplay muted loop playsinline controls preload="metadata"></video><figcaption>Tänzerin – Entstehung in Procreate (12× Geschwindigkeit)</figcaption></figure>
     <div class="grid c2 keep">
       <figure>
         <div class="compare" style="--ar:3/4;background:#E8DFD3">
@@ -583,20 +661,15 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
     </div>
     </div>
   </section>
-
-  <section class="step">
-    <div class="step-info"><span class="n">SCHRITT 04</span><h3>Zeitraffer</h3><p>Die Tänzerin im Zeitraffer: zuerst die Bewegungslinie und lockere Formen im Rough Sketch, danach die klare, saubere Linie. Zwölffach beschleunigt.</p></div>
-    <figure><video src="assets/figur/dancer_timelapse.mp4" poster="assets/figur/dancer_poster.jpg" style="width:100%;border-radius:16px;border:1px solid var(--line)" autoplay muted loop playsinline controls preload="metadata"></video><figcaption>Tänzerin – Entstehung in Procreate (12× Geschwindigkeit)</figcaption></figure>
-  </section>
 </div>
 </article>
 
-<!-- ============ 05 PORTRAITSTUDIEN ============ -->
+<!-- ============ 06 PORTRAITSTUDIEN ============ -->
 <article class="project" id="portrait">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">05 · Skizzen · Gesicht &amp; Ausdruck</p>
+      <p class="kicker">06 · Skizzen · Gesicht &amp; Ausdruck</p>
       <h2>Portraitskizzen</h2>
       <p class="lead">Schnelle Portraitskizzen zu Proportionen, Kopfdrehung und Ausdruck. Linien und Shading sind bewusst schnell und rough gehalten – im Fokus steht die Konstruktion des Kopfes, nicht ein ausgearbeitetes Rendering.</p>
     </div>
@@ -652,12 +725,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 </div>
 </article>
 
-<!-- ============ 06 NINTENDO SWITCH ============ -->
+<!-- ============ 07 NINTENDO SWITCH ============ -->
 <article class="project" id="nintendo-switch">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">06 · 3D · Hard Surface Modeling</p>
+      <p class="kicker">07 · 3D · Hard Surface Modeling</p>
       <h2>Nintendo Switch</h2>
       <p class="lead">Ein Hard-Surface-Modell der Nintendo Switch nach Fotoreferenzen. Details wie Tasten, Lüftungsschlitze und Joy-Con-Schienen sind mit Boolean Cuts umgesetzt.</p>
     </div>
@@ -703,12 +776,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 </div>
 </article>
-<!-- ============ 07 RAMEN WORLD ============ -->
+<!-- ============ 08 RAMEN WORLD ============ -->
 <article class="project" id="ramen-world">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">07 · 3D · Environment</p>
+      <p class="kicker">08 · 3D · Environment</p>
       <h2>Ramen World</h2>
       <p class="lead">Eine kleine, stilisierte japanische Welt rund um einen Ramen-Shop – mit Schrein, Teich und Laternen. Alle Assets wurden einzeln modelliert und anschließend zu einer Szene zusammengesetzt.</p>
     </div>
@@ -757,12 +830,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 
 </div>
 </article>
-<!-- ============ 08 WASSERFALL ============ -->
+<!-- ============ 09 WASSERFALL ============ -->
 <article class="project" id="wasserfall">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">08 · 3D · Animation</p>
+      <p class="kicker">09 · 3D · Animation</p>
       <h2>Wasserfall</h2>
       <p class="lead">Eine animierte Wasserfall-Szene, umgesetzt mit Grease Pencil in Blender – gezeichnete 2D-Linien und -Flächen direkt im 3D-Raum.</p>
     </div>
@@ -784,12 +857,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 </div>
 </article>
 
-<!-- ============ 09 EINZELARBEITEN ============ -->
+<!-- ============ 10 EINZELARBEITEN ============ -->
 <article class="project" id="einzelarbeiten">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">09 · 3D</p>
+      <p class="kicker">10 · 3D</p>
       <h2>3D-Einzelarbeiten</h2>
       <p class="lead">Kleinere Modelling-Studien: ein stilisierter Brunnen, ein isometrisches Badezimmer-Diorama und ein Tisch mit gesteckten Holzverbindungen.</p>
     </div>
@@ -822,12 +895,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   </section>
 </div>
 </article>
-<!-- ============ 10 MALEREI ============ -->
+<!-- ============ 11 MALEREI ============ -->
 <article class="project" id="malerei">
 <div class="wrap">
   <div class="p-head">
     <div>
-      <p class="kicker">10 · Malerei</p>
+      <p class="kicker">11 · Malerei</p>
       <h2>Malerei</h2>
       <p class="lead">Gemalte Arbeiten abseits des Bildschirms – Studien zu Farbe, Licht und Material sowie zwei surreale Motive mit eigener Bildwelt.</p>
     </div>
@@ -855,6 +928,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   <button class="prev" aria-label="Vorheriges Bild">‹</button>
   <button class="next" aria-label="Nächstes Bild">›</button>
 </div>
+<div id="cb" role="dialog" aria-modal="true" aria-label="Vergleich vergrößert">
+  <button class="x" aria-label="Schließen">✕</button>
+</div>
 
 <script>
 // Clay/Render-Vergleichsregler
@@ -862,6 +938,29 @@ document.querySelectorAll('.compare input').forEach(r => {
   const set = () => r.parentElement.style.setProperty('--pos', r.value + '%');
   r.addEventListener('input', set); set();
 });
+
+// Vergleich vergrößern (Auge-Button)
+const cb = document.getElementById('cb');
+const eye = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+document.querySelectorAll('.compare').forEach(c => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'zoom'; b.innerHTML = eye;
+  b.setAttribute('aria-label', 'Vergleich vergrößern');
+  b.onclick = () => {
+    cb.querySelector('.compare')?.remove();
+    const k = c.cloneNode(true), r = k.querySelector('input');
+    k.querySelector('.zoom').remove();
+    r.value = c.querySelector('input').value;
+    const set = () => k.style.setProperty('--pos', r.value + '%');
+    r.addEventListener('input', set); set();
+    cb.append(k); cb.classList.add('open');
+  };
+  c.append(b);
+});
+const cbClose = () => cb.classList.remove('open');
+cb.querySelector('.x').onclick = cbClose;
+cb.addEventListener('click', e => { if (e.target === cb) cbClose(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cbClose(); });
 
 // Lightbox mit Vor/Zurück
 // Titelbild-Slider
