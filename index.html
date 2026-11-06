@@ -39,7 +39,9 @@ a{color:inherit}
 .hero p{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:620px}
 
 /* Übersicht / Inhaltsverzeichnis */
-.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding-bottom:clamp(80px,10vw,140px)}
+.overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-bottom:clamp(80px,10vw,140px)}
+@media (max-width:900px){.overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.overview{grid-template-columns:1fr}}
 .card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s}
 .card:hover{transform:translateY(-4px);border-color:var(--accent)}
 .card .thumb{aspect-ratio:4/3;background:var(--surface-2);overflow:hidden;position:relative}
